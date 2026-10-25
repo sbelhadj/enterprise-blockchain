@@ -1,0 +1,7 @@
+fabric.tgz: OK
+ca.tgz: OK
+peer:
+ Version: v3.1.5
+fabric-ca-server:
+ Version: v1.5.22
+Add ~/enterprise-blockchain/fabric/bin to your PATH.

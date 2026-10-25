@@ -1,0 +1,9 @@
+ShippingLine  CreateShipment SH-0001: committed (VALID)
+ShippingLine  ARRIVE:    committed (VALID)
+PortTerminal  DISCHARGE: committed (VALID)
+Customs       RELEASE:   committed (VALID)
+PortTerminal  RELEASE:   PortTerminalMSP may not record RELEASE; only CustomsMSP may
+shippingline  reads: {"status":"RELEASED","updatedBy":"CustomsMSP"}
+portterminal  reads: {"status":"RELEASED","updatedBy":"CustomsMSP"}
+customs       reads: {"status":"RELEASED","updatedBy":"CustomsMSP"}
+heights: shippingline=9 portterminal=9 customs=9

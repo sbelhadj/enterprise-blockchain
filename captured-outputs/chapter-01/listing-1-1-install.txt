@@ -1,0 +1,41 @@
+$ curl -sSLO https://raw.githubusercontent.com/hyperledger/fabric/main/scripts/install-fabric.sh
+$ ./install-fabric.sh --fabric-version 3.1.5 --ca-version 1.5.22 binary samples
+
+Clone hyperledger/fabric-samples repo
+
+===> Cloning hyperledger/fabric-samples repo
+Cloning into 'fabric-samples'...
+fabric-samples v3.1.5 does not exist, defaulting to main. fabric-samples main branch is intended to work with recent versions of fabric.
+
+Pull Hyperledger Fabric binaries
+
+===> Downloading version 3.1.5 platform specific fabric binaries
+===> Downloading:  https://github.com/hyperledger/fabric/releases/download/v3.1.5/hyperledger-fabric-linux-amd64-3.1.5.tar.gz
+===> Will unpack to: ~/fabric-samples
+
+
+==> Done.
+===> Downloading version 1.5.22 platform specific fabric-ca-client binary
+===> Downloading:  https://github.com/hyperledger/fabric-ca/releases/download/v1.5.22/hyperledger-fabric-ca-linux-amd64-1.5.22.tar.gz
+===> Will unpack to: ~/fabric-samples
+
+
+==> Done.
+$ git -C fabric-samples checkout -q 5789681 && git -C fabric-samples log --oneline -1
+5789681 Bump the go_modules group across 22 directories with 1 update (#1454)
+$ export PATH=~/fabric-samples/bin:$PATH
+$ peer version
+peer:
+ Version: v3.1.5
+ Commit SHA: 86c1172
+ Go version: go1.26.4
+ OS/Arch: linux/amd64
+ Chaincode:
+  Base Docker Label: org.hyperledger.fabric
+  Docker Namespace: hyperledger
+
+$ fabric-ca-client version
+fabric-ca-client:
+ Version: v1.5.22
+ Go version: go1.26.4
+ OS/Arch: linux/amd64

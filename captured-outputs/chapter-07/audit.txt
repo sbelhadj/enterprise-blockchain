@@ -1,0 +1,8 @@
+19 transactions up to block 18; the last 6:
+  block 13 22:31:36 57d88bff ImportBankMSP lcterms.PutCreditNote VALID
+  block 14 22:31:38 55b434db ImportBankMSP lcterms.PurgeTerms VALID
+  block 15 22:31:41 6665058c ExportBankMSP lcterms.PutCreditNote VALID
+  block 16 22:31:43 3c3adb02 ExportBankMSP lcterms.PutCreditNote VALID
+  block 17 22:31:45  ExportBankMSP config VALID
+  block 18 22:31:49 a3ffbd1c ExportBankMSP lcterms.PutCreditNote VALID
+rejected: 0

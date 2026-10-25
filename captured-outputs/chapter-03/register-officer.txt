@@ -1,0 +1,13 @@
+2026/10/24 20:46:49 [INFO] Configuration file location: ~/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/fabric-ca-client-config.yaml
+2026/10/24 20:46:49 [INFO] TLS Enabled
+2026/10/24 20:46:49 [INFO] TLS Enabled
+Password: (not shown: the secret stays in this script)
+2026/10/24 20:46:49 [INFO] TLS Enabled
+2026/10/24 20:46:49 [INFO] generating key: &{A:ecdsa S:256}
+2026/10/24 20:46:49 [INFO] encoded CSR
+2026/10/24 20:46:49 [INFO] Stored client certificate at ~/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/lcofficer@org2.example.com/msp/signcerts/cert.pem
+2026/10/24 20:46:49 [INFO] Stored root CA certificate at ~/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/lcofficer@org2.example.com/msp/cacerts/localhost-8054-ca-org2.pem
+2026/10/24 20:46:49 [INFO] Stored Issuer public key at ~/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/lcofficer@org2.example.com/msp/IssuerPublicKey
+2026/10/24 20:46:49 [INFO] Stored Issuer revocation public key at ~/fabric-samples/test-network/organizations/peerOrganizations/org2.example.com/users/lcofficer@org2.example.com/msp/IssuerRevocationPublicKey
+subject=C = US, ST = North Carolina, O = Hyperledger, OU = client, CN = lcofficer
+{"attrs":{"hf.Affiliation":"","hf.EnrollmentID":"lcofficer","hf.Type":"client","lc.role":"issuer"}}

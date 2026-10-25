@@ -1,0 +1,23 @@
+== 1. ImportBank stores the contact details
+committed with status (VALID)
+  ExportBank reads: {"contactName":"Leila Ben Salah","phone":"+216 71 555 0172"}
+== 2. A backup of peer0.exportbank's volume, before any erasure request
+  backup: 56K; files with the number:
+    ledgersData/pvtdataStore/000002.log
+    ledgersData/stateLeveldb/000001.log
+    transientstore/000001.log
+== 3. The erasure request: ImportBank purges the record
+  committed with status (VALID)
+  ExportBankMSP: no terms for LC-72
+  ImportBankMSP: no terms for LC-72
+  CustomsMSP: tx creator does not have read access permission on privateda
+== 4. The live volume, and the backup, after the purge
+  live volume, files with the number:
+    ledgersData/pvtdataStore/000004.ldb
+    ledgersData/stateLeveldb/000002.ldb
+    transientstore/000002.ldb
+    (end)
+  backup from step 2, files with the number:
+    ledgersData/pvtdataStore/000002.log
+    ledgersData/stateLeveldb/000001.log
+    transientstore/000001.log

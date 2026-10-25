@@ -1,0 +1,14 @@
+leader orderer, view 0
+== 1. Stop follower orderer4; submit through orderer2
+f-1792935955-1 via orderer2: committed with status (VALID) (2.1 s)
+f-1792935955-2 via orderer2: committed with status (VALID) (2.1 s)
+f-1792935955-3 via orderer2: committed with status (VALID) (2.1 s)
+leader orderer, view 0: no view change
+== 2. Stop leader orderer while a client submits through all three others
+view change to leader orderer2 (view 1) 20 s after the stop
+14:46:45.790 orderer3 OnLeaderFwdRequestTimeout: Request {49c4f13a280c579c2da4467f17
+14:46:45.814 orderer2 OnLeaderFwdRequestTimeout: Request {49c4f13a280c579c2da4467f17
+14:46:45.825 orderer2 ChangeRole: Changing to leader role, current view: 1, current 
+14:46:45.839 orderer4 ChangeRole: Changing to follower role, current view: 1, curren
+14:46:45.840 orderer3 ChangeRole: Changing to follower role, current view: 1, curren
+client results: 28 committed VALID, 26 failed or timed out

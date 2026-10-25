@@ -1,0 +1,5 @@
+sofia      PartsMakerMSP  client   key -rw-------
+karim      MROMSP         client   key -rw-------
+amel       AirlineMSP     client   key -rw-------
+maintsync  AirlineMSP     client   key -rw-------
+api-users.json: 4 users, hashes only

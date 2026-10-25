@@ -1,0 +1,16 @@
+== 1. Version 1.1 of the code, tested
+  14 passing (61ms)
+== 2. Version 1.1 at sequence 2 in the network file, then the lifecycle
+  state database: goleveldb
+ManufacturerMSP  committed with status (VALID)
+DistributorMSP   committed with status (VALID)
+PharmacyMSP      committed with status (VALID)
+RegulatorMSP     committed with status (VALID)
+commit: committed with status (VALID) at localhost:7051
+commit: committed with status (VALID) at localhost:9051
+commit: committed with status (VALID) at localhost:10051
+commit: committed with status (VALID) at localhost:8051
+committed: version 1.1, sequence 2
+approved by: DistributorMSP ManufacturerMSP PharmacyMSP RegulatorMSP
+== 3. Data written by version 1.0 is still there
+{"verdict":"RECALLED","batch":"B-2026-001","expiryDate":null}

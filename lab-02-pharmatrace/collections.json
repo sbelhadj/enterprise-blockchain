@@ -1,0 +1,14 @@
+[
+  {
+    "name": "mfrDistTerms",
+    "policy": "OR('ManufacturerMSP.member', 'DistributorMSP.member')",
+    "requiredPeerCount": 1,
+    "maxPeerCount": 1,
+    "blockToLive": 0,
+    "memberOnlyRead": true,
+    "memberOnlyWrite": true,
+    "endorsementPolicy": {
+      "signaturePolicy": "AND('ManufacturerMSP.peer', 'DistributorMSP.peer')"
+    }
+  }
+]

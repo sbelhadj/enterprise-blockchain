@@ -1,0 +1,26 @@
+# Prometheus for the Chapter 5 network (Section 5.7). Start it with:
+#   docker compose ... -f compose/compose-monitoring.yaml up -d prometheus
+name: lcnet
+
+services:
+  prometheus:
+    image: prom/prometheus:v3.5.0
+    container_name: prometheus.example.com
+    entrypoint: ["/bin/prometheus"]
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --web.listen-address=0.0.0.0:9090
+    volumes:
+      - ../config/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus:/prometheus
+    ports:
+      - "9090:9090"
+    networks: [lcnet]
+
+volumes:
+  prometheus:
+
+networks:
+  lcnet:
+    name: lcnet

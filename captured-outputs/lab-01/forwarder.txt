@@ -1,0 +1,11 @@
+application orgs: CustomsMSP FreightForwarderMSP PortTerminalMSP ShippingLineMSP
+two endorsers (customs, forwarder): committed (ENDORSEMENT_POLICY_FAILURE)
+three endorsers (shippingline, customs, forwarder): committed (VALID)
+PortTerminal GATE_OUT: committed (VALID)
+  MANIFESTED by ShippingLineMSP
+  ARRIVED by ShippingLineMSP
+  DISCHARGED by PortTerminalMSP
+  RELEASED by CustomsMSP
+  PICKUP_BOOKED by FreightForwarderMSP
+  GATED_OUT by PortTerminalMSP
+heights: shippingline=15 portterminal=15 customs=15 forwarder=15

@@ -1,0 +1,15 @@
+== ExportBankMSP
+Chaincode code package identifier: lc_1.1:86cbc53fb0a2aa18f88de78f6f3a44004fa259e71a9e26545bee98af6dae702f
+ Container lc.exportbank.example.com  Started
+txid [25c120c31617ce1b81a09dc9fe252b113e95f794c8c74169b3ae65c71ab208db] committed with status (VALID)
+== ImportBankMSP
+Chaincode code package identifier: lc_1.1:38f2db14a35a88df16a52f73b48b16e6bf2214b13c815e00610a65d21181009c
+ Container lc.importbank.example.com  Started
+txid [46a3e6fb88fe58062863c8e5b58baa2c2e8f8081ad8c28051f14901ba7aa2154] committed with status (VALID)
+Chaincode definition for chaincode 'lc', version '1.1', sequence '1' on channel 'lcchannel' approval status by org:
+ExportBankMSP: true
+ImportBankMSP: true
+txid [7297e6dca9986fc390b6bcbca350f752166898213c78b9f5c6485bf606db5d4b] committed with status (VALID) at localhost:8051
+txid [7297e6dca9986fc390b6bcbca350f752166898213c78b9f5c6485bf606db5d4b] committed with status (VALID) at localhost:7051
+Committed chaincode definition for chaincode 'lc' on channel 'lcchannel':
+Version: 1.1, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [ExportBankMSP: true, ImportBankMSP: true]

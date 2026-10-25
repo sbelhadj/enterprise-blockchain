@@ -1,0 +1,26 @@
+2026-10-24 17:49:22.475 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: invoke, true, true
+2026-10-24 17:49:24.508 CET 0002 INFO [chaincodeCmd] ClientWait -> txid [25acc1de4a71a247a936ee1e23e026fe27dada2035db2c7b69cdff8af896f06b] committed with status (VALID) at localhost:9051
+2026-10-24 17:49:24.508 CET 0003 INFO [chaincodeCmd] ClientWait -> txid [25acc1de4a71a247a936ee1e23e026fe27dada2035db2c7b69cdff8af896f06b] committed with status (VALID) at localhost:7051
+2026-10-24 17:49:24.508 CET 0004 INFO [chaincodeCmd] chaincodeInvokeOrQuery -> Chaincode invoke successful. result: status:200 payload:"ExportBank"
+2026-10-24 17:49:24.557 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+block: 7, position in block: 0
+2026-10-24 17:49:24.624 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+validation code: 0
+creator: Org1MSP
+endorsed by: Org1MSP
+endorsed by: Org2MSP
+{"_lifecycle":["namespaces/fields/basic/Sequence read at 5:0"],"basic":["asset7 read at 6:0"]}
+{
+  "reads": [
+    {
+      "key": "asset7",
+      "version": "6:0"
+    }
+  ],
+  "writes": [
+    {
+      "key": "asset7",
+      "value": "{\"AppraisedValue\":950,\"Color\":\"blue\",\"ID\":\"asset7\",\"Owner\":\"ImportBank\",\"Size\":20}"
+    }
+  ]
+}

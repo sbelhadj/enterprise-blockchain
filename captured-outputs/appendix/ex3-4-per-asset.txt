@@ -1,0 +1,9 @@
+== Application organizations: CustomsMSP ExportBankMSP ImportBankMSP
+== lc 1.1 at sequence 1, policy /Channel/Application/Endorsement
+== IssueLC LC-34, endorsed by ImportBank and Customs
+  committed (VALID)
+== AcceptLC LC-34, endorsed by ExportBank and Customs
+  committed (ENDORSEMENT_POLICY_FAILURE)
+== AcceptLC LC-34, endorsed by ExportBank and ImportBank
+  committed (VALID)
+customs reads: {"id":"LC-34","status":"ACCEPTED","advisingBank":"ExportBankMSP"}

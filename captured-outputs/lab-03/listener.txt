@@ -1,0 +1,5 @@
+[listener] applied block 5 REGISTER ESN-1001 -> SERVICEABLE
+[listener] applied block 6 INSTALL ESN-1001 -> INSTALLED
+[listener] applied block 7 CYCLES ESN-1001 -> INSTALLED
+[listener] applied block 8 CYCLES ESN-1001 -> INSTALLED
+[listener] applied block 9 CYCLES ESN-1001 -> INSTALLED

@@ -1,0 +1,6 @@
+ElectionTick: 20
+orderer joins raft20: Status: 201
+orderer2 joins raft20: Status: 201
+orderer3 joins raft20: Status: 201
+Successfully submitted proposal to join channel
+Successfully submitted proposal to join channel

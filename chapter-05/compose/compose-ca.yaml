@@ -1,0 +1,123 @@
+# Chapter 5 certificate authorities: an identity CA and a TLS CA per organization.
+# Bootstrap passwords come from .secrets/ca.env (scripts/secrets.sh). They protect
+# local test CAs only; production CAs keep keys in an HSM and admins in a vault.
+name: lcnet
+
+services:
+  ca-exportbank:                     # ExportBank identity CA
+    image: hyperledger/fabric-ca:1.5.22
+    container_name: ca.exportbank.example.com
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: ca-exportbank
+      FABRIC_CA_SERVER_PORT: 7054
+      FABRIC_CA_SERVER_TLS_ENABLED: "true"
+      FABRIC_CA_SERVER_CSR_CN: ca-exportbank
+      FABRIC_CA_SERVER_CSR_HOSTS: ca.exportbank.example.com,localhost
+      FABRIC_CA_SERVER_OPERATIONS_LISTENADDRESS: 0.0.0.0:7454
+      BOOTSTRAP_PW: ${EXPORTBANK_CA_ADMINPW:?run scripts/secrets.sh}
+    command: sh -c 'fabric-ca-server start -b caadmin:$$BOOTSTRAP_PW'
+    volumes:
+      - ../organizations/exportbank/ca:/etc/hyperledger/fabric-ca-server
+    ports:
+      - "7054:7054"
+    networks: [lcnet]
+
+  tlsca-exportbank:                     # ExportBank TLS CA
+    image: hyperledger/fabric-ca:1.5.22
+    container_name: tlsca.exportbank.example.com
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: tlsca-exportbank
+      FABRIC_CA_SERVER_PORT: 7055
+      FABRIC_CA_SERVER_TLS_ENABLED: "true"
+      FABRIC_CA_SERVER_CSR_CN: tlsca-exportbank
+      FABRIC_CA_SERVER_CSR_HOSTS: tlsca.exportbank.example.com,localhost
+      FABRIC_CA_SERVER_OPERATIONS_LISTENADDRESS: 0.0.0.0:7455
+      BOOTSTRAP_PW: ${EXPORTBANK_TLSCA_ADMINPW:?run scripts/secrets.sh}
+    command: sh -c 'fabric-ca-server start -b caadmin:$$BOOTSTRAP_PW'
+    volumes:
+      - ../organizations/exportbank/tlsca:/etc/hyperledger/fabric-ca-server
+    ports:
+      - "7055:7055"
+    networks: [lcnet]
+
+  ca-importbank:                     # ImportBank identity CA
+    image: hyperledger/fabric-ca:1.5.22
+    container_name: ca.importbank.example.com
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: ca-importbank
+      FABRIC_CA_SERVER_PORT: 8054
+      FABRIC_CA_SERVER_TLS_ENABLED: "true"
+      FABRIC_CA_SERVER_CSR_CN: ca-importbank
+      FABRIC_CA_SERVER_CSR_HOSTS: ca.importbank.example.com,localhost
+      FABRIC_CA_SERVER_OPERATIONS_LISTENADDRESS: 0.0.0.0:8454
+      BOOTSTRAP_PW: ${IMPORTBANK_CA_ADMINPW:?run scripts/secrets.sh}
+    command: sh -c 'fabric-ca-server start -b caadmin:$$BOOTSTRAP_PW'
+    volumes:
+      - ../organizations/importbank/ca:/etc/hyperledger/fabric-ca-server
+    ports:
+      - "8054:8054"
+    networks: [lcnet]
+
+  tlsca-importbank:                     # ImportBank TLS CA
+    image: hyperledger/fabric-ca:1.5.22
+    container_name: tlsca.importbank.example.com
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: tlsca-importbank
+      FABRIC_CA_SERVER_PORT: 8055
+      FABRIC_CA_SERVER_TLS_ENABLED: "true"
+      FABRIC_CA_SERVER_CSR_CN: tlsca-importbank
+      FABRIC_CA_SERVER_CSR_HOSTS: tlsca.importbank.example.com,localhost
+      FABRIC_CA_SERVER_OPERATIONS_LISTENADDRESS: 0.0.0.0:8455
+      BOOTSTRAP_PW: ${IMPORTBANK_TLSCA_ADMINPW:?run scripts/secrets.sh}
+    command: sh -c 'fabric-ca-server start -b caadmin:$$BOOTSTRAP_PW'
+    volumes:
+      - ../organizations/importbank/tlsca:/etc/hyperledger/fabric-ca-server
+    ports:
+      - "8055:8055"
+    networks: [lcnet]
+
+  ca-customs:                     # CustomsAuthority identity CA
+    image: hyperledger/fabric-ca:1.5.22
+    container_name: ca.customs.example.com
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: ca-customs
+      FABRIC_CA_SERVER_PORT: 9054
+      FABRIC_CA_SERVER_TLS_ENABLED: "true"
+      FABRIC_CA_SERVER_CSR_CN: ca-customs
+      FABRIC_CA_SERVER_CSR_HOSTS: ca.customs.example.com,localhost
+      FABRIC_CA_SERVER_OPERATIONS_LISTENADDRESS: 0.0.0.0:9454
+      BOOTSTRAP_PW: ${CUSTOMS_CA_ADMINPW:?run scripts/secrets.sh}
+    command: sh -c 'fabric-ca-server start -b caadmin:$$BOOTSTRAP_PW'
+    volumes:
+      - ../organizations/customs/ca:/etc/hyperledger/fabric-ca-server
+    ports:
+      - "9054:9054"
+    networks: [lcnet]
+
+  tlsca-customs:                     # CustomsAuthority TLS CA
+    image: hyperledger/fabric-ca:1.5.22
+    container_name: tlsca.customs.example.com
+    environment:
+      FABRIC_CA_HOME: /etc/hyperledger/fabric-ca-server
+      FABRIC_CA_SERVER_CA_NAME: tlsca-customs
+      FABRIC_CA_SERVER_PORT: 9055
+      FABRIC_CA_SERVER_TLS_ENABLED: "true"
+      FABRIC_CA_SERVER_CSR_CN: tlsca-customs
+      FABRIC_CA_SERVER_CSR_HOSTS: tlsca.customs.example.com,localhost
+      FABRIC_CA_SERVER_OPERATIONS_LISTENADDRESS: 0.0.0.0:9455
+      BOOTSTRAP_PW: ${CUSTOMS_TLSCA_ADMINPW:?run scripts/secrets.sh}
+    command: sh -c 'fabric-ca-server start -b caadmin:$$BOOTSTRAP_PW'
+    volumes:
+      - ../organizations/customs/tlsca:/etc/hyperledger/fabric-ca-server
+    ports:
+      - "9055:9055"
+    networks: [lcnet]
+
+networks:
+  lcnet:
+    name: lcnet

@@ -1,0 +1,14 @@
+
+> lc-chaincode@1.1.0 lint:demo
+> eslint --no-warn-ignored lint-examples
+
+
+~/enterprise-blockchain/chapter-03/lc-chaincode/lint-examples/nondeterministic.ts
+   5:1   error  'fs' import is restricted from being used. Chaincode must not depend on I/O outside the ledger  no-restricted-imports
+   8:12  error  new Date() reads the system clock; use ctx.stub.getDateTimestamp()                              no-restricted-syntax
+  12:18  error  'Date.now' is restricted from being used. Use ctx.stub.getDateTimestamp()                       no-restricted-properties
+  12:32  error  'Math.random' is restricted from being used. Random numbers differ by endorser                  no-restricted-properties
+  16:28  error  'process.env' is restricted from being used. Peers do not share environment                     no-restricted-properties
+
+✖ 5 problems (5 errors, 0 warnings)
+

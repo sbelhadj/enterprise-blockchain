@@ -1,0 +1,22 @@
+orderer type: etcdraft
+Writing genesis block
+== ExportBankMSP joins orderer0.exportbank.example.com
+Status: 201
+	"consensusRelation": "consenter",
+	"status": "active",
+== ImportBankMSP joins orderer0.importbank.example.com
+Status: 201
+	"consensusRelation": "consenter",
+	"status": "active",
+== CustomsMSP joins orderer0.customs.example.com
+Status: 201
+	"consensusRelation": "consenter",
+	"status": "active",
+== ExportBankMSP joins peer0.exportbank.example.com
+Successfully submitted proposal to join channel
+== ImportBankMSP joins peer0.importbank.example.com
+Successfully submitted proposal to join channel
+	"name": "lcchannel",
+	"consensusRelation": "consenter",
+	"status": "active",
+	"height": 1

@@ -1,0 +1,255 @@
+# Chapter 5 nodes: one Raft orderer and one peer per organization, peer1.exportbank
+# (Section 5.8) and one chaincode server per organization (Section 5.6).
+name: lcnet
+
+x-orderer-env: &orderer-env
+  ORDERER_GENERAL_LISTENADDRESS: 0.0.0.0
+  ORDERER_GENERAL_LOCALMSPDIR: /etc/hyperledger/crypto/msp
+  ORDERER_GENERAL_TLS_ENABLED: "true"
+  ORDERER_GENERAL_TLS_PRIVATEKEY: /etc/hyperledger/crypto/tls/server.key
+  ORDERER_GENERAL_TLS_CERTIFICATE: /etc/hyperledger/crypto/tls/server.crt
+  ORDERER_GENERAL_TLS_ROOTCAS: "[/etc/hyperledger/crypto/tls/ca.crt]"
+  ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE: /etc/hyperledger/crypto/tls/server.crt
+  ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY: /etc/hyperledger/crypto/tls/server.key
+  ORDERER_GENERAL_BOOTSTRAPMETHOD: none      # channels are joined with osnadmin
+  ORDERER_CHANNELPARTICIPATION_ENABLED: "true"
+  ORDERER_ADMIN_TLS_ENABLED: "true"
+  ORDERER_ADMIN_TLS_CERTIFICATE: /etc/hyperledger/crypto/tls/server.crt
+  ORDERER_ADMIN_TLS_PRIVATEKEY: /etc/hyperledger/crypto/tls/server.key
+  ORDERER_ADMIN_TLS_ROOTCAS: "[/etc/hyperledger/crypto/tls/ca.crt]"
+  ORDERER_ADMIN_TLS_CLIENTAUTHREQUIRED: "true"
+  # admin clients must hold a certificate from this organization's own TLS CA
+  ORDERER_ADMIN_TLS_CLIENTROOTCAS: "[/etc/hyperledger/crypto/tls/ca.crt]"
+  ORDERER_METRICS_PROVIDER: prometheus
+  FABRIC_LOGGING_SPEC: INFO
+
+x-peer-env: &peer-env
+  CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/crypto/msp
+  CORE_PEER_TLS_ENABLED: "true"
+  CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/crypto/tls/server.crt
+  CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/crypto/tls/server.key
+  CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/crypto/tls/ca.crt
+  CORE_PEER_PROFILE_ENABLED: "false"
+  CORE_METRICS_PROVIDER: prometheus
+  CORE_VM_ENDPOINT: ""      # no Docker socket: chaincode runs as a service
+  FABRIC_LOGGING_SPEC: INFO
+
+services:
+  orderer0-exportbank:
+    image: hyperledger/fabric-orderer:3.1.5
+    container_name: orderer0.exportbank.example.com
+    environment:
+      <<: *orderer-env
+      ORDERER_GENERAL_LISTENPORT: 7050
+      ORDERER_GENERAL_LOCALMSPID: ExportBankMSP
+      ORDERER_ADMIN_LISTENADDRESS: 0.0.0.0:7053
+      ORDERER_OPERATIONS_LISTENADDRESS: 0.0.0.0:7444
+    command: orderer
+    volumes:
+      - ../organizations/exportbank/orderer0:/etc/hyperledger/crypto:ro
+      - orderer0.exportbank.example.com:/var/hyperledger/production/orderer
+    ports:
+      - "7050:7050"
+      - "7053:7053"
+      - "7444:7444"
+    networks: [lcnet]
+
+  peer0-exportbank:
+    image: hyperledger/fabric-peer:3.1.5
+    container_name: peer0.exportbank.example.com
+    environment:
+      <<: *peer-env
+      CORE_PEER_ID: peer0.exportbank.example.com
+      CORE_PEER_LOCALMSPID: ExportBankMSP
+      CORE_PEER_ADDRESS: peer0.exportbank.example.com:7051
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:7051
+      CORE_PEER_CHAINCODEADDRESS: peer0.exportbank.example.com:7052
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:7052
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer0.exportbank.example.com:7051
+      CORE_PEER_GOSSIP_BOOTSTRAP: peer0.exportbank.example.com:7051
+      CORE_OPERATIONS_LISTENADDRESS: 0.0.0.0:7443
+      CORE_LEDGER_SNAPSHOTS_ROOTDIR: /var/hyperledger/snapshots/peer0
+    command: peer node start
+    volumes:
+      - ../organizations/exportbank/peer0:/etc/hyperledger/crypto:ro
+      - peer0.exportbank.example.com:/var/hyperledger/production
+      - ../snapshots:/var/hyperledger/snapshots     # shared, Section 5.8
+    ports:
+      - "7051:7051"
+      - "7443:7443"
+    networks: [lcnet]
+
+  peer1-exportbank:
+    image: hyperledger/fabric-peer:3.1.5
+    container_name: peer1.exportbank.example.com
+    environment:
+      <<: *peer-env
+      CORE_PEER_ID: peer1.exportbank.example.com
+      CORE_PEER_LOCALMSPID: ExportBankMSP
+      CORE_PEER_ADDRESS: peer1.exportbank.example.com:7061
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:7061
+      CORE_PEER_CHAINCODEADDRESS: peer1.exportbank.example.com:7062
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:7062
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer1.exportbank.example.com:7061
+      CORE_PEER_GOSSIP_BOOTSTRAP: peer0.exportbank.example.com:7051
+      CORE_OPERATIONS_LISTENADDRESS: 0.0.0.0:7445
+    command: peer node start
+    volumes:
+      - ../organizations/exportbank/peer1:/etc/hyperledger/crypto:ro
+      - peer1.exportbank.example.com:/var/hyperledger/production
+      - ../snapshots:/var/hyperledger/snapshots     # shared, Section 5.8
+    ports:
+      - "7061:7061"
+      - "7445:7445"
+    networks: [lcnet]
+
+  orderer0-importbank:
+    image: hyperledger/fabric-orderer:3.1.5
+    container_name: orderer0.importbank.example.com
+    environment:
+      <<: *orderer-env
+      ORDERER_GENERAL_LISTENPORT: 8050
+      ORDERER_GENERAL_LOCALMSPID: ImportBankMSP
+      ORDERER_ADMIN_LISTENADDRESS: 0.0.0.0:8053
+      ORDERER_OPERATIONS_LISTENADDRESS: 0.0.0.0:8444
+    command: orderer
+    volumes:
+      - ../organizations/importbank/orderer0:/etc/hyperledger/crypto:ro
+      - orderer0.importbank.example.com:/var/hyperledger/production/orderer
+    ports:
+      - "8050:8050"
+      - "8053:8053"
+      - "8444:8444"
+    networks: [lcnet]
+
+  peer0-importbank:
+    image: hyperledger/fabric-peer:3.1.5
+    container_name: peer0.importbank.example.com
+    environment:
+      <<: *peer-env
+      CORE_PEER_ID: peer0.importbank.example.com
+      CORE_PEER_LOCALMSPID: ImportBankMSP
+      CORE_PEER_ADDRESS: peer0.importbank.example.com:8051
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:8051
+      CORE_PEER_CHAINCODEADDRESS: peer0.importbank.example.com:8052
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:8052
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer0.importbank.example.com:8051
+      CORE_PEER_GOSSIP_BOOTSTRAP: peer0.importbank.example.com:8051
+      CORE_OPERATIONS_LISTENADDRESS: 0.0.0.0:8443
+    command: peer node start
+    volumes:
+      - ../organizations/importbank/peer0:/etc/hyperledger/crypto:ro
+      - peer0.importbank.example.com:/var/hyperledger/production
+    ports:
+      - "8051:8051"
+      - "8443:8443"
+    networks: [lcnet]
+
+  orderer0-customs:
+    image: hyperledger/fabric-orderer:3.1.5
+    container_name: orderer0.customs.example.com
+    environment:
+      <<: *orderer-env
+      ORDERER_GENERAL_LISTENPORT: 9050
+      ORDERER_GENERAL_LOCALMSPID: CustomsMSP
+      ORDERER_ADMIN_LISTENADDRESS: 0.0.0.0:9053
+      ORDERER_OPERATIONS_LISTENADDRESS: 0.0.0.0:9444
+    command: orderer
+    volumes:
+      - ../organizations/customs/orderer0:/etc/hyperledger/crypto:ro
+      - orderer0.customs.example.com:/var/hyperledger/production/orderer
+    ports:
+      - "9050:9050"
+      - "9053:9053"
+      - "9444:9444"
+    networks: [lcnet]
+
+  peer0-customs:
+    image: hyperledger/fabric-peer:3.1.5
+    container_name: peer0.customs.example.com
+    environment:
+      <<: *peer-env
+      CORE_PEER_ID: peer0.customs.example.com
+      CORE_PEER_LOCALMSPID: CustomsMSP
+      CORE_PEER_ADDRESS: peer0.customs.example.com:9051
+      CORE_PEER_LISTENADDRESS: 0.0.0.0:9051
+      CORE_PEER_CHAINCODEADDRESS: peer0.customs.example.com:9052
+      CORE_PEER_CHAINCODELISTENADDRESS: 0.0.0.0:9052
+      CORE_PEER_GOSSIP_EXTERNALENDPOINT: peer0.customs.example.com:9051
+      CORE_PEER_GOSSIP_BOOTSTRAP: peer0.customs.example.com:9051
+      CORE_OPERATIONS_LISTENADDRESS: 0.0.0.0:9443
+    command: peer node start
+    volumes:
+      - ../organizations/customs/peer0:/etc/hyperledger/crypto:ro
+      - peer0.customs.example.com:/var/hyperledger/production
+    ports:
+      - "9051:9051"
+      - "9443:9443"
+    networks: [lcnet]
+
+  lc-exportbank:          # chaincode server for ExportBankMSP
+    build: ../../chapter-03/lc-chaincode
+    image: lc-chaincode:1.1.0
+    container_name: lc.exportbank.example.com
+    working_dir: /usr/src/app
+    environment:
+      CHAINCODE_ID: ${LC_PACKAGE_ID_EXPORTBANK:-set by deploy-cc.sh}
+      CHAINCODE_SERVER_ADDRESS: 0.0.0.0:7099
+    command: >-
+      sh -c 'exec ./node_modules/.bin/fabric-chaincode-node server
+      --chaincode-address=$$CHAINCODE_SERVER_ADDRESS
+      --chaincode-id=$$CHAINCODE_ID
+      --chaincode-tls-cert-file=/etc/hyperledger/crypto/server.crt
+      --chaincode-tls-key-file=/etc/hyperledger/crypto/server.key'
+    volumes:
+      - ../organizations/exportbank/lc/tls:/etc/hyperledger/crypto:ro
+    networks: [lcnet]
+
+  lc-importbank:          # chaincode server for ImportBankMSP
+    build: ../../chapter-03/lc-chaincode
+    image: lc-chaincode:1.1.0
+    container_name: lc.importbank.example.com
+    working_dir: /usr/src/app
+    environment:
+      CHAINCODE_ID: ${LC_PACKAGE_ID_IMPORTBANK:-set by deploy-cc.sh}
+      CHAINCODE_SERVER_ADDRESS: 0.0.0.0:8099
+    command: >-
+      sh -c 'exec ./node_modules/.bin/fabric-chaincode-node server
+      --chaincode-address=$$CHAINCODE_SERVER_ADDRESS
+      --chaincode-id=$$CHAINCODE_ID
+      --chaincode-tls-cert-file=/etc/hyperledger/crypto/server.crt
+      --chaincode-tls-key-file=/etc/hyperledger/crypto/server.key'
+    volumes:
+      - ../organizations/importbank/lc/tls:/etc/hyperledger/crypto:ro
+    networks: [lcnet]
+
+  lc-customs:          # chaincode server for CustomsMSP
+    build: ../../chapter-03/lc-chaincode
+    image: lc-chaincode:1.1.0
+    container_name: lc.customs.example.com
+    working_dir: /usr/src/app
+    environment:
+      CHAINCODE_ID: ${LC_PACKAGE_ID_CUSTOMS:-set by deploy-cc.sh}
+      CHAINCODE_SERVER_ADDRESS: 0.0.0.0:9099
+    command: >-
+      sh -c 'exec ./node_modules/.bin/fabric-chaincode-node server
+      --chaincode-address=$$CHAINCODE_SERVER_ADDRESS
+      --chaincode-id=$$CHAINCODE_ID
+      --chaincode-tls-cert-file=/etc/hyperledger/crypto/server.crt
+      --chaincode-tls-key-file=/etc/hyperledger/crypto/server.key'
+    volumes:
+      - ../organizations/customs/lc/tls:/etc/hyperledger/crypto:ro
+    networks: [lcnet]
+
+volumes:
+  orderer0.exportbank.example.com:
+  peer0.exportbank.example.com:
+  peer1.exportbank.example.com:
+  orderer0.importbank.example.com:
+  peer0.importbank.example.com:
+  orderer0.customs.example.com:
+  peer0.customs.example.com:
+
+networks:
+  lcnet:
+    name: lcnet

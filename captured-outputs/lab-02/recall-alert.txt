@@ -1,0 +1,9 @@
+manufacturer produces B-2026-002 committed (VALID)
+sets expiry 2028-03-31           committed (VALID)
+verify C0001                     {"verdict":"OK","expiryDate":"2028-03-31"}
+manufacturer recalls B-2026-002  committed (VALID)
+== listener output
+listening for recalls on pharmachannel
+ALERT recall of B-2026-002 (Amoxicillin 500 mg capsules) by ManufacturerMSP
+  reason: Label misprint: wrong strength on outer carton
+  stock held by ManufacturerMSP; block 26, transaction f86da19edb0354eb...

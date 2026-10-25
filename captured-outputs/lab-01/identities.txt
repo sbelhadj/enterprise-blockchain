@@ -1,0 +1,6 @@
+ShippingLineMSP: admin ca-admin orderer0 peer0 shipment tlsca-admin user1 
+PortTerminalMSP: admin ca-admin orderer0 peer0 shipment tlsca-admin user1 
+CustomsMSP: admin ca-admin orderer0 peer0 shipment tlsca-admin user1 
+ShippingLineMSP: every identity has the expected role and chain
+PortTerminalMSP: every identity has the expected role and chain
+CustomsMSP: every identity has the expected role and chain

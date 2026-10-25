@@ -1,0 +1,34 @@
+== 1. Healthy cluster
+node                   raft-leader  raft-active    bft-leader-id  bft-view 
+orderer.example.com    no           3              3              2        
+orderer2.example.com   yes          3              3              2        
+orderer3.example.com   no           3              3              2        
+orderer4.example.com   -            -              3              2        
+leader: orderer2; the client sends to orderer
+raft-1792875533-1 via orderer: committed with status (VALID) (2.1 s)
+== 2. Stop the leader at 21:58:56.277
+orderer2.example.com
+new leader orderer elected after 5.5 s
+21:59:01.618 INFO becomeCandidate -> 1 became candidate at term 5
+21:59:01.621 INFO becomeLeader -> 1 became leader at term 5
+21:59:01.622 INFO run -> Raft leader changed: 0 -> 1
+raft-1792875533-2 via orderer: committed with status (VALID) (2.1 s)
+== 3. Stop a second node: one consenter of three is left
+orderer3.example.com
+node                   raft-leader  raft-active    bft-leader-id  bft-view 
+orderer.example.com    no           1              3              2        
+orderer2.example.com   down
+orderer3.example.com   down
+orderer4.example.com   -            -              3              2        
+raft-1792875533-3 via orderer: Error: error sending transaction for invoke: got unexpected status: SERVICE_UNAVAILABLE -- no Raft leader (0.1 s)
+== 4. Restart both stopped nodes
+orderer2.example.com
+orderer3.example.com
+leader orderer elected 8.6 s after the restart
+raft-1792875533-4 via orderer: committed with status (VALID) (3.8 s)
+all three consenters active 12.4 s after the restart
+node                   raft-leader  raft-active    bft-leader-id  bft-view 
+orderer.example.com    yes          3              3              2        
+orderer2.example.com   no           3              3              2        
+orderer3.example.com   no           3              3              2        
+orderer4.example.com   -            -              3              2        

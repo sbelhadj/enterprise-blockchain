@@ -1,0 +1,4 @@
+admin      admin    tls: DNS:localhost
+orderer0   orderer  tls: DNS:orderer0.customs.example.com, DNS:localhost
+peer0      peer     tls: DNS:peer0.customs.example.com, DNS:localhost
+user1      client   tls: -

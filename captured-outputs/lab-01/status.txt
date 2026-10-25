@@ -1,0 +1,5 @@
+heights: shippingline=1 portterminal=1 customs=1
+Raft (consensus_etcdraft_is_leader, consensus_etcdraft_cluster_size):
+  orderer0.shippingline.example.com  leader=0 cluster=3
+  orderer0.portterminal.example.com  leader=1 cluster=3
+  orderer0.customs.example.com       leader=0 cluster=3

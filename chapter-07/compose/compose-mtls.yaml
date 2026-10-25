@@ -1,0 +1,12 @@
+# Listing 7.1: mutual TLS on ImportBank's peer. With client authentication
+# required, every client, peer and orderer that connects must present a TLS
+# certificate from a CA the peer trusts: its own TLS CA, named here, and the TLS
+# CAs of the channel's members, which the peer takes from the channel
+# configuration. Added to the Compose command with one more -f.
+name: lcnet
+
+services:
+  peer0-importbank:
+    environment:
+      CORE_PEER_TLS_CLIENTAUTHREQUIRED: "true"
+      CORE_PEER_TLS_CLIENTROOTCAS_FILES: /etc/hyperledger/crypto/tls/ca.crt

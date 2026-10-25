@@ -1,0 +1,13 @@
+== 1. Enroll trader7, who can transact
+serial=7F901AA71FF59F40BBC029C8D7FAE35DFCE76262
+trader7: committed with status (VALID)
+== 2. Revoke the certificate and generate a CRL
+Serial Number: 7F901AA71FF59F40BBC029C8D7FAE35DFCE76262
+Revocation Date: Oct 24 22:31:43 2026 GMT
+trader7: committed with status (VALID)
+== 3. ExportBank puts the CRL into its MSP in the channel configuration
+Successfully submitted channel update
+== 4. The same calls again
+trader7: access denied: channel [lcchannel] creator org [ExportBankMSP]
+user1: committed with status (VALID)
+peer log: could not validate identity against certification chain: The certificate has been revoked

@@ -1,0 +1,8 @@
+network.sh up finished in 24 s
+node                  health  version  height  raft-leader  peers-known
+orderer0.exportbank   OK      v3.1.5   4       1            -
+orderer0.importbank   OK      v3.1.5   4       0            -
+orderer0.customs      OK      v3.1.5   4       0            -
+peer0.exportbank      OK      v3.1.5   4       -            1
+peer0.importbank      OK      v3.1.5   4       -            1
+network removed

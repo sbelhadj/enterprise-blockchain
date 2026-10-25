@@ -1,0 +1,13 @@
+2026-10-24 17:48:31.910 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: invoke, true, true
+2026-10-24 17:48:34.024 CET 0002 INFO [chaincodeCmd] ClientWait -> txid [4f57b7bad4fc858c29f43eec926ef096dbd4c97dca21f0889dd418e5708934b1] committed with status (VALID) at localhost:7051
+2026-10-24 17:48:34.025 CET 0003 INFO [chaincodeCmd] ClientWait -> txid [4f57b7bad4fc858c29f43eec926ef096dbd4c97dca21f0889dd418e5708934b1] committed with status (VALID) at localhost:9051
+2026-10-24 17:48:34.025 CET 0004 INFO [chaincodeCmd] chaincodeInvokeOrQuery -> Chaincode invoke successful. result: status:200
+2026-10-24 17:48:34.075 CET 0001 INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
+2026-10-24 17:48:34.077 CET 0002 INFO [cli.common] readBlock -> Received block: 6
+{
+  "block": "6",
+  "tx_id": "4f57b7bad4fc858c29f43eec926ef096dbd4c97dca21f0889dd418e5708934b1"
+}
+2026-10-24 17:48:34.137 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+{"AppraisedValue":950,"Color":"blue","ID":"asset7","Owner":"ExportBank","Size":20}
+elapsed 2.295 s

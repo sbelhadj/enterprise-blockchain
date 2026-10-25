@@ -1,0 +1,18 @@
+raftchannel: leader orderer2, ElectionTick 10
+14:47:40.137 leader orderer2 stopped (last heartbeat at most 500 ms earlier)
+14:47:51.741 metrics report orderer as leader (11.6 s)
+14:47:45.674 orderer: 1 became pre-candidate at term 3
+14:47:45.674 orderer: 1 is starting a new election at term 3
+14:47:45.675 orderer: Raft leader changed: 2 -> 0
+14:47:45.711 orderer3: 3 became pre-candidate at term 3
+14:47:45.711 orderer3: 3 is starting a new election at term 3
+14:47:45.711 orderer3: Raft leader changed: 2 -> 0
+14:47:51.675 orderer: 1 became pre-candidate at term 3
+14:47:51.675 orderer: 1 is starting a new election at term 3
+14:47:51.676 orderer: 1 became candidate at term 4
+14:47:51.677 orderer: 1 became leader at term 4
+14:47:51.678 orderer3: Raft leader changed: 0 -> 1
+14:47:51.678 orderer: Raft leader changed: 0 -> 1
+14:48:21.856 first transaction after the election:
+             orderer: committed with status (VALID) (30.1 s)
+14:48:33.013 orderer2 restarted; active consenters: 3

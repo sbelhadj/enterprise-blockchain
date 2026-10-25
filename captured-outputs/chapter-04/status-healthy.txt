@@ -1,0 +1,5 @@
+node                   raft-leader  raft-active    bft-leader-id  bft-view 
+orderer.example.com    yes          3              1              0        
+orderer2.example.com   no           3              1              0        
+orderer3.example.com   no           3              1              0        
+orderer4.example.com   -            -              1              0        

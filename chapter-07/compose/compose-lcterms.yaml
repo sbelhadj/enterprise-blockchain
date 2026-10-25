@@ -1,0 +1,62 @@
+# Chapter 7: the lcterms chaincode servers, added to Chapter 5's project with -f.
+# Relative paths resolve from the first Compose file's folder, chapter-05/compose.
+name: lcnet
+
+services:
+  lcterms-exportbank:          # chaincode server for ExportBankMSP
+    build: ../../chapter-07/lcterms
+    image: lcterms:1.0.0
+    container_name: lcterms.exportbank.example.com
+    working_dir: /usr/src/app
+    environment:
+      CHAINCODE_ID: ${LCTERMS_PACKAGE_ID_EXPORTBANK:-set by deploy-lcterms.sh}
+      CHAINCODE_SERVER_ADDRESS: 0.0.0.0:7098
+    command: >-
+      sh -c 'exec ./node_modules/.bin/fabric-chaincode-node server
+      --chaincode-address=$$CHAINCODE_SERVER_ADDRESS
+      --chaincode-id=$$CHAINCODE_ID
+      --chaincode-tls-cert-file=/etc/hyperledger/crypto/server.crt
+      --chaincode-tls-key-file=/etc/hyperledger/crypto/server.key'
+    volumes:
+      - ../organizations/exportbank/lcterms/tls:/etc/hyperledger/crypto:ro
+    networks: [lcnet]
+
+  lcterms-importbank:          # chaincode server for ImportBankMSP
+    build: ../../chapter-07/lcterms
+    image: lcterms:1.0.0
+    container_name: lcterms.importbank.example.com
+    working_dir: /usr/src/app
+    environment:
+      CHAINCODE_ID: ${LCTERMS_PACKAGE_ID_IMPORTBANK:-set by deploy-lcterms.sh}
+      CHAINCODE_SERVER_ADDRESS: 0.0.0.0:8098
+    command: >-
+      sh -c 'exec ./node_modules/.bin/fabric-chaincode-node server
+      --chaincode-address=$$CHAINCODE_SERVER_ADDRESS
+      --chaincode-id=$$CHAINCODE_ID
+      --chaincode-tls-cert-file=/etc/hyperledger/crypto/server.crt
+      --chaincode-tls-key-file=/etc/hyperledger/crypto/server.key'
+    volumes:
+      - ../organizations/importbank/lcterms/tls:/etc/hyperledger/crypto:ro
+    networks: [lcnet]
+
+  lcterms-customs:          # chaincode server for CustomsMSP
+    build: ../../chapter-07/lcterms
+    image: lcterms:1.0.0
+    container_name: lcterms.customs.example.com
+    working_dir: /usr/src/app
+    environment:
+      CHAINCODE_ID: ${LCTERMS_PACKAGE_ID_CUSTOMS:-set by deploy-lcterms.sh}
+      CHAINCODE_SERVER_ADDRESS: 0.0.0.0:9098
+    command: >-
+      sh -c 'exec ./node_modules/.bin/fabric-chaincode-node server
+      --chaincode-address=$$CHAINCODE_SERVER_ADDRESS
+      --chaincode-id=$$CHAINCODE_ID
+      --chaincode-tls-cert-file=/etc/hyperledger/crypto/server.crt
+      --chaincode-tls-key-file=/etc/hyperledger/crypto/server.key'
+    volumes:
+      - ../organizations/customs/lcterms/tls:/etc/hyperledger/crypto:ro
+    networks: [lcnet]
+
+networks:
+  lcnet:
+    name: lcnet

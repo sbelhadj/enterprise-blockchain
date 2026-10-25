@@ -1,0 +1,32 @@
+21:55:15.410 orderer INFO ChangeRole -> Changing to leader role, current view: 0, current leader: 1
+21:55:15.484 orderer2 INFO ChangeRole -> Changing to follower role, current view: 0, current leader: 1
+21:55:15.584 orderer3 INFO ChangeRole -> Changing to follower role, current view: 0, current leader: 1
+21:55:15.662 orderer4 INFO ChangeRole -> Changing to follower role, current view: 0, current leader: 1
+21:56:20.067 orderer2 INFO OnRequestTimeout -> request 252b05fa timeout expired, forwarding request to leader: 1
+21:56:22.244 orderer2 INFO OnRequestTimeout -> request 93a44982 timeout expired, forwarding request to leader: 1
+21:56:22.244 orderer2 WARN func1 -> Failed sending transaction to 1: EOF
+21:56:42.244 orderer2 WARN OnLeaderFwdRequestTimeout -> request 93a44982 leader-forwarding timeout expired, complaining about leader: 1
+21:57:01.493 orderer2 INFO ChangeRole -> Changing to follower role, current view: 0, current leader: 1
+21:57:19.572 orderer3 WARN OnHeartbeatTimeout -> Heartbeat timeout expired, complaining about leader: 1
+21:57:19.583 orderer2 INFO ChangeRole -> Changing to leader role, current view: 1, current leader: 2
+21:57:19.585 orderer4 INFO ChangeRole -> Changing to follower role, current view: 1, current leader: 2
+21:57:19.586 orderer3 INFO ChangeRole -> Changing to follower role, current view: 1, current leader: 2
+21:57:22.438 orderer2 INFO OnRequestTimeout -> request b906eba5 timeout expired, this node is the leader, nothing to do
+21:57:42.438 orderer2 INFO OnLeaderFwdRequestTimeout -> request b906eba5 leader-forwarding timeout expired, this node is the leader, stop send heartbeat message
+21:57:50.607 orderer3 INFO ChangeRole -> Changing to follower role, current view: 1, current leader: 2
+21:57:50.611 orderer INFO ChangeRole -> Changing to leader role, current view: 0, current leader: 1
+21:57:52.661 orderer2 INFO OnRequestTimeout -> request dc01989e timeout expired, this node is the leader, nothing to do
+21:58:04.638 orderer INFO ChangeRole -> Changing to follower role, current view: 1, current leader: 2
+21:58:12.662 orderer2 INFO OnLeaderFwdRequestTimeout -> request dc01989e leader-forwarding timeout expired, this node is the leader, stop send heartbeat message
+21:58:22.817 orderer2 INFO OnRequestTimeout -> request c5ff63c7 timeout expired, this node is the leader, nothing to do
+21:58:38.656 orderer4 WARN OnHeartbeatTimeout -> Heartbeat timeout expired, complaining about leader: 2
+21:58:42.818 orderer2 INFO OnLeaderFwdRequestTimeout -> request c5ff63c7 leader-forwarding timeout expired, this node is the leader, stop send heartbeat message
+21:58:51.585 orderer3 WARN OnHeartbeatTimeout -> Heartbeat timeout expired, complaining about leader: 2
+21:58:51.603 orderer INFO ChangeRole -> Changing to follower role, current view: 2, current leader: 3
+21:58:51.610 orderer3 INFO ChangeRole -> Changing to leader role, current view: 2, current leader: 3
+21:58:51.612 orderer2 INFO ChangeRole -> Changing to follower role, current view: 2, current leader: 3
+21:58:51.614 orderer4 INFO ChangeRole -> Changing to follower role, current view: 2, current leader: 3
+21:58:53.613 orderer2 INFO OnRequestTimeout -> request 05fb0984 timeout expired, forwarding request to leader: 3
+21:58:53.613 orderer2 INFO OnRequestTimeout -> request b906eba5 timeout expired, forwarding request to leader: 3
+21:58:53.613 orderer2 INFO OnRequestTimeout -> request c5ff63c7 timeout expired, forwarding request to leader: 3
+21:58:53.613 orderer2 INFO OnRequestTimeout -> request dc01989e timeout expired, forwarding request to leader: 3

@@ -1,0 +1,7 @@
+== 1. The design as written, on a channel without its organizations
+collection-name: invoiceCarrierA -- collection member 'RetailerMSP' is not part of the channel
+== 2. The same design with Chapter 5's organizations in the three roles
+committed with status (VALID)
+== 3. What the peer recorded for ExportBank's approval
+{"name":"invoiceCarrierA","members":["ImportBankMSP","ExportBankMSP"],"endorsers":["ImportBankMSP","ExportBankMSP"],"required_peer_count":1}
+{"name":"invoiceCarrierB","members":["ImportBankMSP","CustomsMSP"],"endorsers":["ImportBankMSP","CustomsMSP"],"required_peer_count":1}

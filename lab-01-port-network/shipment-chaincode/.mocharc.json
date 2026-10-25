@@ -1,0 +1,5 @@
+{
+  "require": ["ts-node/register", "src/test-support/quiet-logs.ts"],
+  "spec": "src/**/*.spec.ts",
+  "timeout": 5000
+}

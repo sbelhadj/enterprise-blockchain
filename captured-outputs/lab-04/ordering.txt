@@ -1,0 +1,28 @@
+== consenters before
+  orderer0.exportbank.example.com:7050
+  orderer0.importbank.example.com:8050
+  orderer0.customs.example.com:9050
+== 1. ShippingLineMSP joins the Orderer group, with its endpoint
+  ExportBankMSP signs
+  ImportBankMSP signs and submits: Successfully submitted channel update
+  block after the change: committed (VALID)
+== 2. Its orderer starts and joins as a follower
+  join: Status: 201
+  lcchannel on orderer0.shippingline: follower, active, height 19
+== 3. It becomes a consenter
+  ExportBankMSP signs
+  ImportBankMSP signs
+  CustomsMSP signs and submits: Successfully submitted channel update
+  lcchannel on orderer0.shippingline: consenter, active, height 23
+  block after the change: committed (VALID)
+== 4. CustomsAuthority's orderer leaves the cluster
+  ExportBankMSP signs
+  ImportBankMSP signs
+  ShippingLineMSP signs and submits: Successfully submitted channel update
+  customs removes the channel from its orderer: Status: 204
+  block after the change: committed (VALID)
+traffic during the change: 8 transactions, 8 committed VALID
+== consenters after
+  orderer0.exportbank.example.com:7050
+  orderer0.importbank.example.com:8050
+  orderer0.shippingline.example.com:10050

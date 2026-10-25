@@ -1,0 +1,23 @@
+== host: 2 vCPU, 7 GB RAM, x86_64, every node of the network on this one machine
+== BatchTimeout 2s, MaxMessageCount 10
+already set; no update needed
+setting   rate    tps     p50     p95 endorse   order  commit  failed
+2s/10       10   10.0     538     947      20       5     477       0
+2s/10       25   25.0     234     403      15       4     206       0
+2s/10       50   50.0     141     233      17       5     120       0
+2s/10      100   99.0     517    1007     257     103     163       0
+2s/10      150  118.2   10175   14349    3869    2725    2876       0
+== BatchTimeout 2s, MaxMessageCount 500
+{"after":{"timeout":"2s","max_message_count":500,"preferred_max_bytes":524288}}
+2s/500      10    9.5    1152    2052      17       5    1084       0
+2s/500      25   24.3    1158    2065      17       5    1137       0
+2s/500      50   49.1    1180    2076      24       8    1152       0
+2s/500     100   96.9     876    1368     147      57     674       0
+2s/500     150  118.6    8969   14726    4048    2763    1935       0
+== BatchTimeout 250ms, MaxMessageCount 100
+{"after":{"timeout":"250ms","max_message_count":100,"preferred_max_bytes":524288}}
+250ms/100   10    9.9     188     293      17       5     168       0
+250ms/100   25   24.7     191     317      17       5     171       0
+250ms/100   50   49.3     207     332      21       6     178       0
+250ms/100  100   98.5     454     882     194      70     227       0
+250ms/100  150  111.8   11579   18142    4758    4008    2492       0

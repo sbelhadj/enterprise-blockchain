@@ -1,0 +1,12 @@
+ Container ca.exportbank.example.com  Started
+ Container tlsca.exportbank.example.com  Started
+ Container ca.importbank.example.com  Started
+ Container tlsca.importbank.example.com  Started
+ Container ca.customs.example.com  Started
+ Container tlsca.customs.example.com  Started
+ca.exportbank.example.com    root ca-exportbank    valid until Oct 20 21:46:00 2041 GMT
+tlsca.exportbank.example.com root tlsca-exportbank valid until Oct 20 21:46:00 2041 GMT
+ca.importbank.example.com    root ca-importbank    valid until Oct 20 21:46:00 2041 GMT
+tlsca.importbank.example.com root tlsca-importbank valid until Oct 20 21:46:00 2041 GMT
+ca.customs.example.com       root ca-customs       valid until Oct 20 21:46:00 2041 GMT
+tlsca.customs.example.com    root tlsca-customs    valid until Oct 20 21:46:00 2041 GMT

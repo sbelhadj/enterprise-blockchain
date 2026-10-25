@@ -1,0 +1,14 @@
+raft20: leader orderer3, ElectionTick 20
+14:48:43.076 leader orderer3 stopped (last heartbeat at most 500 ms earlier)
+14:49:01.296 metrics report orderer as leader (18.2 s)
+14:49:01.175 orderer: 1 became pre-candidate at term 2
+14:49:01.175 orderer: 1 is starting a new election at term 2
+14:49:01.175 orderer: Raft leader changed: 3 -> 0
+14:49:01.177 orderer: 1 became candidate at term 3
+14:49:01.179 orderer2: Raft leader changed: 3 -> 0
+14:49:01.179 orderer: 1 became leader at term 3
+14:49:01.179 orderer: Raft leader changed: 0 -> 1
+14:49:01.180 orderer2: Raft leader changed: 0 -> 1
+14:49:03.420 first transaction after the election:
+             orderer: committed with status (VALID) (2.1 s)
+14:49:03.449 orderer3 restarted; active consenters: 3

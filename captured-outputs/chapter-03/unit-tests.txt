@@ -1,0 +1,62 @@
+
+> lc-chaincode@1.1.0 lint
+> eslint src
+
+
+> lc-chaincode@1.1.0 coverage
+> c8 mocha
+
+
+
+  package entry point and data type
+    ✔ exports the contract for fabric-chaincode-node
+    ✔ creates an empty LetterOfCredit in the ISSUED state
+
+  contract metadata
+    ✔ gives every LetterOfCredit property a concrete design type
+
+  LetterOfCreditContract
+    IssueLC
+      ✔ stores the LC with the caller as issuing bank and the transaction time
+      ✔ serializes deterministically, with keys in sorted order
+      ✔ adds an index entry with a non-empty value
+      ✔ requires both banks to endorse later changes to the LC
+      ✔ emits LCIssued with a summary, not the whole LC
+      ✔ refuses a caller without lc.role=issuer
+      ✔ refuses an advising bank equal to the issuing bank or empty
+      ✔ refuses a duplicate id
+      ✔ validates every input
+    the life of an LC
+      ✔ moves ISSUED to ACCEPTED to DOCUMENTS_PRESENTED to PAID
+      ✔ lets only the advising bank accept and present, and only the issuing bank pay
+      ✔ enforces the order of the states
+      ✔ checks the documents hash before anything else
+      ✔ reports a missing or malformed id on update
+    queries
+      ✔ LCExists and ReadLC
+      ✔ pages through the issuing-bank index with a bookmark
+      ✔ hands out bookmarks that survive a shell: base64url, no null bytes
+      ✔ copes with a page that comes back without metadata
+      ✔ rejects a page size outside 1 to 100
+      ✔ queries by status through the rich-query path
+      ✔ returns the history of an LC, newest first
+
+
+  24 passing (35ms)
+
+-------------------|---------|----------|---------|---------|-------------------
+File               | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+-------------------|---------|----------|---------|---------|-------------------
+All files          |     100 |      100 |     100 |     100 |                   
+ index.ts          |     100 |      100 |     100 |     100 |                   
+ lcContract.ts     |     100 |      100 |     100 |     100 |                   
+ letterOfCredit.ts |     100 |      100 |     100 |     100 |                   
+ validation.ts     |     100 |      100 |     100 |     100 |                   
+-------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 100% ( 425/425 )
+Branches     : 100% ( 75/75 )
+Functions    : 100% ( 26/26 )
+Lines        : 100% ( 425/425 )
+================================================================================

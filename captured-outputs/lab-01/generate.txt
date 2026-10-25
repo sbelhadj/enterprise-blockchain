@@ -1,0 +1,3 @@
+generated in ~/enterprise-blockchain/lab-01-port-network/build:
+  compose-ca.yaml compose-net.yaml configtx.yaml .secrets/network.env
+  state database: goleveldb

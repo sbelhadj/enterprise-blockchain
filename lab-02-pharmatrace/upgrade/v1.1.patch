@@ -1,0 +1,95 @@
+diff --git a/lab-02-pharmatrace/pharmatrace-chaincode/package.json b/lab-02-pharmatrace/pharmatrace-chaincode/package.json
+index 447a5e7..ab49c6d 100644
+--- a/lab-02-pharmatrace/pharmatrace-chaincode/package.json
++++ b/lab-02-pharmatrace/pharmatrace-chaincode/package.json
+@@ -1,6 +1,6 @@
+ {
+   "name": "pharmatrace-chaincode",
+-  "version": "1.0.0",
++  "version": "1.1.0",
+   "description": "Pharmaceutical batch traceability and recall, Book 4, Lab 2",
+   "main": "dist/index.js",
+   "typings": "dist/index.d.ts",
+diff --git a/lab-02-pharmatrace/pharmatrace-chaincode/src/batch.ts b/lab-02-pharmatrace/pharmatrace-chaincode/src/batch.ts
+index 74563b5..5f2c65c 100644
+--- a/lab-02-pharmatrace/pharmatrace-chaincode/src/batch.ts
++++ b/lab-02-pharmatrace/pharmatrace-chaincode/src/batch.ts
+@@ -24,6 +24,7 @@ export interface Batch {
+     holder: string; // MSP ID of the organization that has custody
+     shippedTo: string; // MSP ID of the receiver while SHIPPED, otherwise ''
+     recallReason: string;
++    expiryDate?: string; // version 1.1: YYYY-MM-DD, set once by the manufacturer
+     updatedBy: string;
+     updatedAt: string;
+ }
+diff --git a/lab-02-pharmatrace/pharmatrace-chaincode/src/pharmaTraceContract.spec.ts b/lab-02-pharmatrace/pharmatrace-chaincode/src/pharmaTraceContract.spec.ts
+index 3d868b5..1255e94 100644
+--- a/lab-02-pharmatrace/pharmatrace-chaincode/src/pharmaTraceContract.spec.ts
++++ b/lab-02-pharmatrace/pharmatrace-chaincode/src/pharmaTraceContract.spec.ts
+@@ -192,6 +192,21 @@ describe('PharmaTraceContract', () => {
+         await fails(c.RecallBatch(ctx(mfr), 'B1', 'again'), /already recalled/);
+     });
+ 
++    it('records an expiry date once and reports expired units (v1.1)', async () => {
++        await produce();
++        await fails(
++            c.SetExpiry(ctx(dist), 'B1', '2027-01-31'),
++            /may not set expiry/,
++        );
++        await fails(c.SetExpiry(ctx(mfr), 'B1', '2027-02-30'), /invalid date/);
++        await fails(c.SetExpiry(ctx(mfr), 'B1', '31/01/2027'), /invalid date/);
++        await c.SetExpiry(ctx(mfr), 'B1', '2026-10-23');
++        await fails(c.SetExpiry(ctx(mfr), 'B1', '2027-01-31'), /already expires/);
++        expect(await verify('S1')).to.equal('EXPIRED');
++        stub.now = new Date('2026-10-23T23:00:00.000Z');
++        expect(await verify('S1')).to.equal('OK');
++    });
++
+     it('verifies unknown and malformed serials', async () => {
+         expect(await verify('ZZ999')).to.equal('UNKNOWN');
+         await fails(c.VerifySerial(ctx(pharmacy), 'S-1'), /invalid serial/);
+diff --git a/lab-02-pharmatrace/pharmatrace-chaincode/src/pharmaTraceContract.ts b/lab-02-pharmatrace/pharmatrace-chaincode/src/pharmaTraceContract.ts
+index d07eea9..5d180c6 100644
+--- a/lab-02-pharmatrace/pharmatrace-chaincode/src/pharmaTraceContract.ts
++++ b/lab-02-pharmatrace/pharmatrace-chaincode/src/pharmaTraceContract.ts
+@@ -145,6 +145,24 @@ export class PharmaTraceContract extends Contract {
+         await this.save(ctx, b, 'BatchRecalled');
+     }
+ 
++    /** Version 1.1: the manufacturer records the expiry date of a batch, once. */
++    @Transaction()
++    public async SetExpiry(ctx: Context, id: string, date: string): Promise<void> {
++        const b = await this.load(ctx, id);
++        this.requireOrg(ctx, ['ManufacturerMSP'], 'set expiry dates');
++        if (
++            !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
++            new Date(`${date}T00:00:00Z`).toISOString().slice(0, 10) !== date
++        ) {
++            throw new Error(`invalid date "${date}": use YYYY-MM-DD`);
++        }
++        if (b.expiryDate !== undefined) {
++            throw new Error(`batch ${id} already expires on ${b.expiryDate}`);
++        }
++        b.expiryDate = date;
++        await this.save(ctx, b, 'BatchUpdated');
++    }
++
+     /** Price terms between manufacturer and distributor, from transient data. */
+     @Transaction()
+     public async SetTerms(ctx: Context, id: string): Promise<void> {
+@@ -207,8 +225,14 @@ export class PharmaTraceContract extends Contract {
+             verdict = 'RECALLED';
+         } else if (b.dispensed.includes(serial)) {
+             verdict = 'ALREADY_DISPENSED';
++        } else if (
++            b.expiryDate !== undefined &&
++            b.expiryDate < ctx.stub.getDateTimestamp().toISOString().slice(0, 10)
++        ) {
++            verdict = 'EXPIRED';
+         }
+-        return JSON.stringify({serial, verdict, batch: b.id, product: b.product});
++        const {id, product, expiryDate} = b;
++        return JSON.stringify({serial, verdict, batch: id, product, expiryDate});
+     }
+ 
+     @Transaction(false)

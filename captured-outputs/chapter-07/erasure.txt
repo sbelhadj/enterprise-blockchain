@@ -1,0 +1,15 @@
+== 1. ImportBank purges the terms
+committed with status (VALID)
+== 2. Every peer, asked for the terms and for their hash
+ExportBankMSP: no terms for LC-2026-101
+ExportBankMSP: no terms hash for LC-2026-101
+ImportBankMSP: no terms for LC-2026-101
+ImportBankMSP: no terms hash for LC-2026-101
+CustomsMSP: tx creator does not have read access permission on privatedata in chaincodeName:lcterms collectionName: lcBankTerms
+CustomsMSP: no terms hash for LC-2026-101
+== 3. What the blocks still hold
+-- the PutTerms transaction
+lcBankTerms: key hash 37259df673448386..., purge false
+  value hash 5c4863a3cc4961fea5711823eed23241d823f52643d49bcc33f066fac23c6150
+-- the PurgeTerms transaction
+lcBankTerms: key hash 37259df673448386..., purge true

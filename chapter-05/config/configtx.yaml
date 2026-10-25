@@ -1,0 +1,173 @@
+# Channel configuration for the Chapter 5 letter of credit network (Fabric 3).
+# ExportBank, ImportBank and CustomsAuthority each run one Raft orderer. The banks
+# are the application organizations; CustomsAuthority joins them in Section 5.9.
+---
+Organizations:
+  - &ExportBank
+    Name: ExportBankMSP
+    ID: ExportBankMSP
+    MSPDir: ../organizations/exportbank/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('ExportBankMSP.member')"
+      Writers:             # orderers sign blocks, so they must be writers
+        Type: Signature
+        Rule: >-
+          OR('ExportBankMSP.admin', 'ExportBankMSP.client',
+          'ExportBankMSP.orderer')
+      Admins:
+        Type: Signature
+        Rule: "OR('ExportBankMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('ExportBankMSP.peer')"
+    OrdererEndpoints:
+      - orderer0.exportbank.example.com:7050
+    AnchorPeers:
+      - Host: peer0.exportbank.example.com
+        Port: 7051
+  - &ImportBank
+    Name: ImportBankMSP
+    ID: ImportBankMSP
+    MSPDir: ../organizations/importbank/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('ImportBankMSP.member')"
+      Writers:             # orderers sign blocks, so they must be writers
+        Type: Signature
+        Rule: >-
+          OR('ImportBankMSP.admin', 'ImportBankMSP.client',
+          'ImportBankMSP.orderer')
+      Admins:
+        Type: Signature
+        Rule: "OR('ImportBankMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('ImportBankMSP.peer')"
+    OrdererEndpoints:
+      - orderer0.importbank.example.com:8050
+    AnchorPeers:
+      - Host: peer0.importbank.example.com
+        Port: 8051
+  - &Customs
+    Name: CustomsMSP
+    ID: CustomsMSP
+    MSPDir: ../organizations/customs/msp
+    Policies:
+      Readers:
+        Type: Signature
+        Rule: "OR('CustomsMSP.member')"
+      Writers:             # orderers sign blocks, so they must be writers
+        Type: Signature
+        Rule: >-
+          OR('CustomsMSP.admin', 'CustomsMSP.client',
+          'CustomsMSP.orderer')
+      Admins:
+        Type: Signature
+        Rule: "OR('CustomsMSP.admin')"
+      Endorsement:
+        Type: Signature
+        Rule: "OR('CustomsMSP.peer')"
+    OrdererEndpoints:
+      - orderer0.customs.example.com:9050
+    AnchorPeers:
+      - Host: peer0.customs.example.com
+        Port: 9051
+
+Capabilities:
+  Channel: &ChannelCapabilities
+    V3_0: true   # needs organization-level OrdererEndpoints, as above
+  Orderer: &OrdererCapabilities
+    V2_0: true
+  Application: &ApplicationCapabilities
+    V2_5: true
+
+Application: &ApplicationDefaults
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    LifecycleEndorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+    Endorsement:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Endorsement"
+  Capabilities:
+    <<: *ApplicationCapabilities
+
+Orderer: &OrdererDefaults
+  OrdererType: etcdraft
+  BatchTimeout: 2s
+  BatchSize:
+    MaxMessageCount: 10
+    AbsoluteMaxBytes: 99 MB
+    PreferredMaxBytes: 512 KB
+  EtcdRaft:
+    Consenters:
+      - Host: orderer0.exportbank.example.com
+        Port: 7050
+        ClientTLSCert: ../organizations/exportbank/orderer0/tls/server.crt
+        ServerTLSCert: ../organizations/exportbank/orderer0/tls/server.crt
+      - Host: orderer0.importbank.example.com
+        Port: 8050
+        ClientTLSCert: ../organizations/importbank/orderer0/tls/server.crt
+        ServerTLSCert: ../organizations/importbank/orderer0/tls/server.crt
+      - Host: orderer0.customs.example.com
+        Port: 9050
+        ClientTLSCert: ../organizations/customs/orderer0/tls/server.crt
+        ServerTLSCert: ../organizations/customs/orderer0/tls/server.crt
+  Organizations:
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+    BlockValidation:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+
+Channel: &ChannelDefaults
+  Policies:
+    Readers:
+      Type: ImplicitMeta
+      Rule: "ANY Readers"
+    Writers:
+      Type: ImplicitMeta
+      Rule: "ANY Writers"
+    Admins:
+      Type: ImplicitMeta
+      Rule: "MAJORITY Admins"
+  Capabilities:
+    <<: *ChannelCapabilities
+
+Profiles:
+  LCChannel:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *ExportBank
+        - *ImportBank
+        - *Customs
+      Capabilities: *OrdererCapabilities
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *ExportBank
+        - *ImportBank
+      Capabilities: *ApplicationCapabilities

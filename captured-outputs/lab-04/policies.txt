@@ -1,0 +1,12 @@
+Channel/Admins                    MAJORITY Admins
+Application/Admins                MAJORITY Admins
+Application/Endorsement           MAJORITY Endorsement
+Application/LifecycleEndorsement  MAJORITY Endorsement
+Orderer/Admins                    MAJORITY Admins
+Orderer/BlockValidation           ANY Writers
+ExportBankMSP/Admins              1 of ExportBankMSP.admin
+ExportBankMSP/Endorsement         1 of ExportBankMSP.peer
+Raft consenters                   3
+Application orgs                  Customs ExportBank ImportBank ShippingLine
+Orderer orgs                      Customs ExportBank ImportBank
+lc 1.1, sequence 1                /Channel/Application/Endorsement

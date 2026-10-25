@@ -1,0 +1,23 @@
+== 1. Request a snapshot at the next committed block
+Snapshot request submitted successfully
+snapshot of block 5:
+_snapshot_additional_metadata.json
+_snapshot_signable_metadata.json
+private_state_hashes.data
+private_state_hashes.metadata
+public_state.data
+public_state.metadata
+txids.data
+txids.metadata
+{"channel_name":"lcchannel","last_block_number":5,"last_block_hash":"0b676b18594ff179"}
+== 2. Start peer1 and join it from the snapshot
+ Container peer1.exportbank.example.com  Started
+Successfully submitted proposal to join channel
+Chaincode code package identifier: lc_1.1:86cbc53fb0a2aa18f88de78f6f3a44004fa259e71a9e26545bee98af6dae702f
+== 3. One more transaction, then compare the two peers
+== ImportBank's LC officer issues LC-2026-102: committed with status (VALID)
+== ExportBank accepts it: committed with status (VALID)
+peer0: height 8, LC-2026-102 is ACCEPTED
+peer1: height 8, LC-2026-102 is ACCEPTED
+== 4. What peer1 does not have: the blocks before the snapshot
+cannot serve block [1]. The ledger is bootstrapped from a snapshot. First available block = [6]

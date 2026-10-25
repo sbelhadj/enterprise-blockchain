@@ -1,0 +1,14 @@
+== 1. Production needs the manufacturer's and the regulator's peers
+manufacturer only:     committed (ENDORSEMENT_POLICY_FAILURE)
+with the regulator:    committed (VALID)
+== 2. Price terms go to the two trading partners only
+set terms:             committed (VALID)
+distributor reads:     {"batch":"B-2026-000","currency":"EUR","unitPrice":0.42}
+pharmacy reads:
+  tx creator does not have read access permission on privatedata in 
+  chaincodeName:pharmatrace collectionName: mfrDistTerms
+== 3. Custody moves only with the receiver's endorsement
+ship to distributor:   committed (VALID)
+receive, distributor:  committed (ENDORSEMENT_POLICY_FAILURE)
+receive, both peers:   committed (VALID)
+{"id":"B-2026-000","status":"RECEIVED","holder":"DistributorMSP"}

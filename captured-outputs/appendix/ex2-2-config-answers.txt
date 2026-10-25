@@ -1,0 +1,35 @@
+A is .channel_group.groups.Application, O is .channel_group.groups.Orderer
+Q1  .channel_group.mod_policy
+    "Admins"
+Q1  .channel_group.policies.Admins
+    "Admins MAJORITY Admins"
+Q2  $A.policies.Admins
+    "Admins MAJORITY Admins"
+Q2  $A.groups
+    ["Org1MSP","Org2MSP"]
+Q2  $O.groups
+    ["OrdererOrg"]
+Q3  .channel_group.values.Capabilities.value.capabilities
+    ["V2_0"]
+Q3  $O.values.Capabilities.value.capabilities
+    ["V2_0"]
+Q3  $A.values.Capabilities.value.capabilities
+    ["V2_5"]
+Q4  $O.values.ConsensusType.value.metadata.consenters
+    ["orderer.example.com:7050"]
+Q5  $O.values.BatchTimeout.value.timeout
+    "2s"
+Q6  $A.groups.Org1MSP.policies.Endorsement.policy.value
+    {"rule":{"n_out_of":{"n":1,"rules":[{"signed_by":0}]}},"ids":["Org1MSP.PEER"]}
+Q7  $A.groups.Org2MSP.values.MSP.value.config.root_certs[0]
+    1152
+    CN ca.org2.example.com
+    valid until Oct 22 08:49:00 2036 GMT
+Q8  $A.policies.Readers
+    "Admins ANY Readers"
+Q8  $A.groups.Org1MSP.policies.Readers.policy.value.identities
+    ["ADMIN","PEER","CLIENT"]
+Q9  $A.groups.Org2MSP.values.AnchorPeers.value.anchor_peers
+    [{"host":"peer0.org2.example.com","port":9051}]
+Q10 .channel_group.values.OrdererAddresses.value.addresses
+    ["orderer.example.com:7050"]

@@ -1,0 +1,14 @@
+== Approvals for sequence 2: LifecycleEndorsement is MAJORITY of 4, so 3
+  ExportBankMSP    approves: committed with status (VALID)
+  ImportBankMSP    approves: committed with status (VALID)
+  ShippingLineMSP  approves: committed with status (VALID)
+  readiness: Customs=false ExportBank=true ImportBank=true ShippingLine=true
+  commit: committed with status (VALID)
+== CustomsAuthority approves after the commit, so that its peer runs 2.0 too
+  CustomsMSP       approves: committed with status (VALID)
+== IssueLC under the new policy
+  LC-52A, ImportBank and Customs:      committed (ENDORSEMENT_POLICY_FAILURE)
+  LC-52B, ImportBank and ShippingLine: committed (VALID)
+== AcceptLC LC-52B: the LC's own key-level policy still names both banks
+  endorsed by ExportBank and ShippingLine: committed (ENDORSEMENT_POLICY_FAILURE)
+  endorsed by ExportBank and ImportBank:   committed (VALID)

@@ -1,0 +1,16 @@
+== in step
+parts on the ledger: 1, differences: 0
+exit code 0
+== someone marks ESN-1001 as installed in the maintenance database
+parts on the ledger: 1, differences: 2
+  ESN-1001: status is INSTALLED here, SERVICEABLE on the ledger
+  ESN-1001: aircraft is TS-IMX here, (none) on the ledger
+exit code 1
+== the ledger wins
+parts on the ledger: 1, differences: 2
+  ESN-1001: status is INSTALLED here, SERVICEABLE on the ledger
+  ESN-1001: aircraft is TS-IMX here, (none) on the ledger
+fixed: the database now matches the ledger for 1
+exit code 0
+parts on the ledger: 1, differences: 0
+exit code 0

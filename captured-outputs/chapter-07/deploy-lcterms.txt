@@ -1,0 +1,12 @@
+== ExportBankMSP
+ Container lcterms.exportbank.example.com  Started
+committed with status (VALID)
+== ImportBankMSP
+ Container lcterms.importbank.example.com  Started
+committed with status (VALID)
+== CustomsMSP
+ Container lcterms.customs.example.com  Started
+committed with status (VALID)
+committed with status (VALID) at localhost:7051
+committed with status (VALID) at localhost:8051
+Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [CustomsMSP: true, ExportBankMSP: true, ImportBankMSP: true]

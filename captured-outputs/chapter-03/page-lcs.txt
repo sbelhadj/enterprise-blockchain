@@ -1,0 +1,9 @@
+committed with status (VALID)
+committed with status (VALID)
+committed with status (VALID)
+2026-10-24 20:47:27.725 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+page 1: {"ids":["LC-2026-001","LC-2026-002"],"fetchedRecordsCount":2,"bookmark":"AGlzc3Vlcn5sYwBPcmcyTVNQAExDLTIwMjYtMDAzAA"}
+2026-10-24 20:47:27.801 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+page 2: {"ids":["LC-2026-003","LC-2026-004"],"fetchedRecordsCount":2,"bookmark":"AGlzc3Vlcn5sYwBPcmcyTVNQAExDLTIwMjYtMDA1AA"}
+2026-10-24 20:47:27.878 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+page 3: {"ids":["LC-2026-005"],"fetchedRecordsCount":1,"bookmark":""}

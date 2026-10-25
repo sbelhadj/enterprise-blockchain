@@ -1,0 +1,20 @@
+manufacturer produces          committed (VALID)
+ships to distributor           committed (VALID)
+distributor receives           committed (VALID)
+ships to pharmacy              committed (VALID)
+pharmacy receives              committed (VALID)
+pharmacy dispenses A0002       committed (VALID)
+verify A0001                   {"verdict":"OK","batch":"B-2026-001"}
+verify A0002                   {"verdict":"ALREADY_DISPENSED","batch":"B-2026-001"}
+verify FAKE0001                {"verdict":"UNKNOWN","batch":null}
+pharmacy tries to recall       PharmacyMSP may not recall batches
+regulator recalls              committed (VALID)
+verify A0001                   {"verdict":"RECALLED","batch":"B-2026-001"}
+history of B-2026-001:
+  PRODUCED  holder ManufacturerMSP, written by ManufacturerMSP
+  SHIPPED   holder ManufacturerMSP, written by ManufacturerMSP
+  RECEIVED  holder DistributorMSP, written by DistributorMSP
+  SHIPPED   holder DistributorMSP, written by DistributorMSP
+  RECEIVED  holder PharmacyMSP, written by PharmacyMSP
+  RECEIVED  holder PharmacyMSP, written by PharmacyMSP
+  RECALLED  holder PharmacyMSP, written by RegulatorMSP

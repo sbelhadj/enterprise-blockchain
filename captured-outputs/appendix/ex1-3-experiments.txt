@@ -1,0 +1,10 @@
+== Experiment A: asset8 endorsed by Org1's peer only
+  committed with status (ENDORSEMENT_POLICY_FAILURE)
+  asset8 on Org1's peer afterwards: false
+== Experiment B: five transactions endorsed by both peers, timed
+  asset11: committed with status (VALID) in 2092 ms
+  asset12: committed with status (VALID) in 2129 ms
+  asset13: committed with status (VALID) in 2115 ms
+  asset14: committed with status (VALID) in 2095 ms
+  asset15: committed with status (VALID) in 2117 ms
+  BatchTimeout in configtx/configtx.yaml: 2s

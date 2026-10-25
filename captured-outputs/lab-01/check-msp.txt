@@ -1,0 +1,6 @@
+identity   role     chain  tls    TLS host names
+admin      admin    ok     ok     DNS:localhost
+orderer0   orderer  ok     ok     DNS:orderer0.customs.example.com, DNS:localhost
+peer0      peer     ok     ok     DNS:peer0.customs.example.com, DNS:localhost
+user1      client   ok     -      -
+CustomsMSP: every identity has the expected role and chain

@@ -1,0 +1,68 @@
+2026-10-25 14:53:55 start generate
+generated in ~/enterprise-blockchain/solutions/chapter-05/ex5-2/build:
+  compose-ca.yaml compose-net.yaml configtx.yaml .secrets/network.env
+  state database: goleveldb
+2026-10-25 14:53:56 done  generate
+2026-10-25 14:53:56 start cas
+ca.exportbank.example.com      port 7054   root valid until Oct 21 13:49:00 2041 GMT
+tlsca.exportbank.example.com   port 7055   root valid until Oct 21 13:49:00 2041 GMT
+ca.importbank.example.com      port 8054   root valid until Oct 21 13:49:00 2041 GMT
+tlsca.importbank.example.com   port 8055   root valid until Oct 21 13:49:00 2041 GMT
+ca.customs.example.com         port 9054   root valid until Oct 21 13:49:00 2041 GMT
+tlsca.customs.example.com      port 9055   root valid until Oct 21 13:49:00 2041 GMT
+2026-10-25 14:53:57 done  cas
+2026-10-25 14:53:57 start identities
+ExportBankMSP: admin ca-admin lc orderer0 peer0 tlsca-admin user1 
+ImportBankMSP: admin ca-admin lc lcofficer orderer0 peer0 tlsca-admin user1 
+CustomsMSP: admin ca-admin lc orderer0 peer0 tlsca-admin user1 
+ExportBankMSP: every identity has the expected role and chain
+ImportBankMSP: every identity has the expected role and chain
+CustomsMSP: every identity has the expected role and chain
+2026-10-25 14:54:06 done  identities
+2026-10-25 14:54:06 start nodes
+orderer0.exportbank.example.com    OK
+peer0.exportbank.example.com       OK
+orderer0.importbank.example.com    OK
+peer0.importbank.example.com       OK
+orderer0.customs.example.com       OK
+peer0.customs.example.com          OK
+2026-10-25 14:54:07 done  nodes
+2026-10-25 14:54:07 start channel
+orderer type: etcdraft
+orderer0.exportbank.example.com joins lcchannel: Status: 201
+orderer0.importbank.example.com joins lcchannel: Status: 201
+orderer0.customs.example.com joins lcchannel: Status: 201
+peer0.exportbank.example.com joins lcchannel: "height":1
+peer0.importbank.example.com joins lcchannel: "height":1
+peer0.customs.example.com joins lcchannel: "height":1
+2026-10-25 14:54:08 done  channel
+2026-10-25 14:54:08 start deploy
+ExportBankMSP    committed with status (VALID)
+ImportBankMSP    committed with status (VALID)
+CustomsMSP       committed with status (VALID)
+commit: committed with status (VALID) at localhost:8051
+commit: committed with status (VALID) at localhost:9051
+commit: committed with status (VALID) at localhost:7051
+committed: version 1.1, sequence 1
+approved by: CustomsMSP ExportBankMSP ImportBankMSP
+2026-10-25 14:54:17 done  deploy
+2026-10-25 14:54:17 up: network already running, nothing to do
+2026-10-25 14:54:17 start add shippingline
+peer0.shippingline.example.com     OK
+== ShippingLineMSP's definition, without orderer endpoints, with its anchor peer
+ShippingLineMSP policies: Admins Endorsement Readers Writers
+== 3 application organizations: 2 signatures needed
+ExportBankMSP signs
+ImportBankMSP signs and submits: Successfully submitted channel update
+== ShippingLineMSP joins its peer and approves the chaincode definition
+Successfully submitted proposal to join channel
+ShippingLineMSP  committed with status (VALID)
+2026-10-25 14:54:25 done  add shippingline
+2026-10-25 14:54:45 status
+  exportbank    peer0 OK   height 7
+  importbank    peer0 OK   height 7
+  customs       peer0 OK   height 7
+  shippingline  peer0 OK   height 7
+2026-10-25 14:55:05 start down
+network removed
+2026-10-25 14:55:43 done  down

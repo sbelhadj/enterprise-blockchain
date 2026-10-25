@@ -1,0 +1,8 @@
+ Container peer0.importbank.example.com  Started
+== 1. Without a client certificate
+Error: error getting endorser client for query: endorser client failed to connect to localhost:8051: context deadline exceeded
+== 2. With the administrator's TLS client certificate
+Applicant within limit; collateral 20 percent
+peer log: client didn't provide a certificate
+== 3. The other peers still reach it, with their own TLS certificates
+gossip_membership_total_peers_known{channel="lcchannel"} 2

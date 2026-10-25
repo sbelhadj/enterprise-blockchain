@@ -1,0 +1,13 @@
+{
+  "project": "lcnet34",
+  "channel": "lcchannel",
+  "statedb": "goleveldb",
+  "chaincode": {"name": "lc", "path": "../../../chapter-03/lc-chaincode",
+                "version": "1.1"},
+  "orgs": [
+    {"name": "exportbank", "msp": "ExportBankMSP", "base": 7000, "orderer": true},
+    {"name": "importbank", "msp": "ImportBankMSP", "base": 8000, "orderer": true,
+     "users": [{"name": "lcofficer", "attrs": "lc.role=issuer:ecert"}]},
+    {"name": "customs", "msp": "CustomsMSP", "base": 9000, "joins": "later"}
+  ]
+}

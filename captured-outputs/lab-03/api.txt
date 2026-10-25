@@ -1,0 +1,11 @@
+sofia registers ESN-1001 201 block 5, attempts 1
+amel installs it         200 block 6, attempts 1
+karim reports cycles     403 MROMSP may not record cycles
+amel repairs it          403 AirlineMSP may not record REPAIR
+amel reads ESN-9999      404 part ESN-9999 does not exist
+no API key               401 missing or invalid API key
+== three cycle reports for ESN-1001 at the same moment
+  report 1               200 block 8, attempts 2
+  report 2               200 block 7, attempts 1
+  report 3               200 block 9, attempts 3
+{"serial":"ESN-1001","status":"INSTALLED","aircraft":"TS-IMW","cycles":3}

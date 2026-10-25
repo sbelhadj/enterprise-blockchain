@@ -1,0 +1,37 @@
+  # Listing 4.1: a Raft channel on three of the four ordering nodes of the
+  # BFT test network. Appended to test-network/bft-config/configtx.yaml by
+  # scripts/create-raft-channel.sh, which replaces ORDERERS with a full path.
+  ChannelUsingRaft3:
+    <<: *ChannelDefaults
+    Orderer:
+      <<: *OrdererDefaults
+      Organizations:
+        - *OrdererOrg
+      Capabilities: *OrdererCapabilities
+      OrdererType: etcdraft
+      EtcdRaft:
+        Consenters:
+          - Host: orderer.example.com
+            Port: 7050
+            ClientTLSCert: ORDERERS/orderer.example.com/tls/server.crt
+            ServerTLSCert: ORDERERS/orderer.example.com/tls/server.crt
+          - Host: orderer2.example.com
+            Port: 7052
+            ClientTLSCert: ORDERERS/orderer2.example.com/tls/server.crt
+            ServerTLSCert: ORDERERS/orderer2.example.com/tls/server.crt
+          - Host: orderer3.example.com
+            Port: 7056
+            ClientTLSCert: ORDERERS/orderer3.example.com/tls/server.crt
+            ServerTLSCert: ORDERERS/orderer3.example.com/tls/server.crt
+        Options:
+          TickInterval: 500ms          # one Raft tick
+          ElectionTick: 10             # silent ticks before an election
+          HeartbeatTick: 1             # ticks between leader heartbeats
+          MaxInflightBlocks: 5         # blocks sent before waiting for acks
+          SnapshotIntervalSize: 16 MB  # new data between snapshots
+    Application:
+      <<: *ApplicationDefaults
+      Organizations:
+        - *Org1
+        - *Org2
+      Capabilities: *ApplicationCapabilities

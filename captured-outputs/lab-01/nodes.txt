@@ -1,0 +1,6 @@
+orderer0.shippingline.example.com  OK
+peer0.shippingline.example.com     OK
+orderer0.portterminal.example.com  OK
+peer0.portterminal.example.com     OK
+orderer0.customs.example.com       OK
+peer0.customs.example.com          OK

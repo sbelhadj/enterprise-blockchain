@@ -1,0 +1,18 @@
+== 1. ExportBank fetches and decodes the current configuration
+["ExportBankMSP","ImportBankMSP"]
+== 2. Add CustomsMSP to the Application group and compute the difference
+{"read":["ExportBankMSP","ImportBankMSP"],"write":["CustomsMSP","ExportBankMSP","ImportBankMSP"]}
+== 3. ExportBank alone submits it
+implicit policy evaluation failed - 1 sub-policies were satisfied, but this 
+policy requires 2 of the 'Admins' sub-policies to be satisfied
+== 4. ExportBank signs, ImportBank signs and submits
+Successfully submitted channel update
+== 5. CustomsAuthority joins its peer and approves the chaincode definition
+Successfully submitted proposal to join channel
+== CustomsMSP
+Chaincode code package identifier: lc_1.1:c9d4a908360017a487d106fb04f597310374fa2f33fccf8d72c44cb9161aa1d6
+ Container lc.customs.example.com  Started
+txid [4bb32ab7641578e78fdd9e5a01d69c57f2aa8dd02db7a16403abdadb5a299813] committed with status (VALID)
+Version: 1.1, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [CustomsMSP: true, ExportBankMSP: true, ImportBankMSP: true]
+== 6. A customs officer reads the letter of credit
+{"id":"LC-2026-101","status":"ACCEPTED","issuingBank":"ImportBankMSP","advisingBank":"ExportBankMSP"}

@@ -1,0 +1,18 @@
+transaction 633d2e82eb4fbf49f9d08540ec263c28fa1fcfe4e4b264f7baae9cfac6de4d46 submitted
+committed in block 6 with status VALID
+{
+  "advisingBank": "Org1MSP",
+  "amount": 125000000,
+  "applicant": "Tunis Olive Imports",
+  "beneficiary": "Sfax Olive Oil Co",
+  "currency": "EUR",
+  "docType": "lc",
+  "documentsHash": "",
+  "expiryDate": "2027-04-22",
+  "goods": "20 t extra virgin olive oil",
+  "id": "LC-2026-001",
+  "issuedAt": "2026-10-24T19:47:10.435Z",
+  "issuingBank": "Org2MSP",
+  "status": "ISSUED",
+  "updatedAt": "2026-10-24T19:47:10.435Z"
+}

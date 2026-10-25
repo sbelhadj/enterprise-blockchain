@@ -1,0 +1,7 @@
+orderer type: etcdraft
+orderer0.shippingline.example.com joins portchannel: Status: 201
+orderer0.portterminal.example.com joins portchannel: Status: 201
+orderer0.customs.example.com joins portchannel: Status: 201
+peer0.shippingline.example.com joins portchannel: "height":1
+peer0.portterminal.example.com joins portchannel: "height":1
+peer0.customs.example.com joins portchannel: "height":1

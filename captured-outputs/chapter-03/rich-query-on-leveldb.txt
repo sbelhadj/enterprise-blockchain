@@ -1,0 +1,2 @@
+2026-10-24 20:47:27.965 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+Error: endorsement failure during query. response: status:500 message:"GET_QUERY_RESULT failed: transaction ID: bdb74f52431b374d2a9dc36fbabadf6fcd9aaafa446ed76c3bdbe6c2a65b6abe: ExecuteQueryWithMetadata not supported for leveldb"

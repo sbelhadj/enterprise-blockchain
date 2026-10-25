@@ -1,0 +1,13 @@
+== Build and package version 1.2 (indexes: indexStatus and indexAmount)
+  before any approval
+  readiness: {"Org1MSP":false,"Org2MSP":false}
+  Chaincode code package identifier: lc_1.2:f881fd5eb573fc5e62
+  Org1MSP approves: committed with status (VALID)
+  readiness: {"Org1MSP":true,"Org2MSP":false}
+  Chaincode code package identifier: lc_1.2:f881fd5eb573fc5e62
+  Org2MSP approves: committed with status (VALID)
+  readiness: {"Org1MSP":true,"Org2MSP":true}
+== Commit, endorsed by both organizations
+  committed with status (VALID) at localhost:9051
+  committed with status (VALID) at localhost:7051
+  committed: version 1.2, sequence 3

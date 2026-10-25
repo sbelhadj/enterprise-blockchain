@@ -1,0 +1,19 @@
+# Prometheus for the Chapter 5 network: scrape every node's operations endpoint.
+# The endpoints run without TLS here; in production enable operations.tls with
+# client authentication and give Prometheus a client certificate (Section 5.7).
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: orderers
+    static_configs:
+      - targets:
+          - orderer0.exportbank.example.com:7444
+          - orderer0.importbank.example.com:8444
+          - orderer0.customs.example.com:9444
+  - job_name: peers
+    static_configs:
+      - targets:
+          - peer0.exportbank.example.com:7443
+          - peer1.exportbank.example.com:7445
+          - peer0.importbank.example.com:8443
+          - peer0.customs.example.com:9443

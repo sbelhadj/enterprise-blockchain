@@ -1,0 +1,51 @@
+ChannelUsingBFT:
+  <<: *ChannelDefaults
+  Orderer:
+    <<: *OrdererDefaults
+    Organizations:
+      - *OrdererOrg
+    Capabilities: *OrdererCapabilities
+    OrdererType: BFT
+    SmartBFT:
+      RequestBatchMaxCount: 100
+      RequestBatchMaxInterval: 50ms
+      RequestForwardTimeout: 2s
+      RequestComplainTimeout: 20s
+      RequestAutoRemoveTimeout: 3m0s
+      ViewChangeResendInterval: 5s
+      ViewChangeTimeout: 20s
+      LeaderHeartbeatTimeout: 1m0s
+      CollectTimeout: 1s
+      RequestBatchMaxBytes: 10485760
+      IncomingMessageBufferSize: 200
+      RequestPoolSize: 100000
+      LeaderHeartbeatCount: 10
+    ConsenterMapping:
+      - ID: 1
+        Host: orderer.example.com
+        Port: 7050
+        MSPID: OrdererMSP
+        Identity: ORD/orderer.example.com/msp/signcerts/orderer.example.com-cert.pem
+        ClientTLSCert: ORD/orderer.example.com/tls/server.crt
+        ServerTLSCert: ORD/orderer.example.com/tls/server.crt
+      - ID: 2
+        Host: orderer2.example.com
+        Port: 7052
+        MSPID: OrdererMSP
+        Identity: ORD/orderer2.example.com/msp/signcerts/orderer2.example.com-cert.pem
+        ClientTLSCert: ORD/orderer2.example.com/tls/server.crt
+        ServerTLSCert: ORD/orderer2.example.com/tls/server.crt
+      - ID: 3
+        Host: orderer3.example.com
+        Port: 7056
+        MSPID: OrdererMSP
+        Identity: ORD/orderer3.example.com/msp/signcerts/orderer3.example.com-cert.pem
+        ClientTLSCert: ORD/orderer3.example.com/tls/server.crt
+        ServerTLSCert: ORD/orderer3.example.com/tls/server.crt
+      - ID: 4
+        Host: orderer4.example.com
+        Port: 7058
+        MSPID: OrdererMSP
+        Identity: ORD/orderer4.example.com/msp/signcerts/orderer4.example.com-cert.pem
+        ClientTLSCert: ORD/orderer4.example.com/tls/server.crt
+        ServerTLSCert: ORD/orderer4.example.com/tls/server.crt

@@ -1,0 +1,11 @@
+{
+  "project": "partsnet",
+  "channel": "partschannel",
+  "statedb": "CouchDB",
+  "chaincode": {"name": "parts", "path": "parts-chaincode", "version": "1.0"},
+  "orgs": [
+    {"name": "partsmaker", "msp": "PartsMakerMSP", "base": 7000, "orderer": true},
+    {"name": "mro", "msp": "MROMSP", "base": 8000, "orderer": true},
+    {"name": "airline", "msp": "AirlineMSP", "base": 9000, "orderer": true}
+  ]
+}

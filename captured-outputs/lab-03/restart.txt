@@ -1,0 +1,11 @@
+== the service stops
+== the MRO records two events while it is down
+REMOVE ESN-1001: committed with status (VALID)
+REPAIR ESN-1001: committed with status (VALID)
+== first restart
+[listener] applied block 10 REMOVE ESN-1001 -> UNSERVICEABLE
+[listener] applied block 11 REPAIR ESN-1001 -> SERVICEABLE
+== second restart
+listener lines after the second restart: 0
+== the maintenance system's record of ESN-1001
+{"serial":"ESN-1001","status":"SERVICEABLE","aircraft":""}

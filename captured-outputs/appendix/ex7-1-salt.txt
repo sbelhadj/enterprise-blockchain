@@ -1,0 +1,14 @@
+== 1. Without a salt
+  ImportBank stores LC-71A: committed with status (VALID)
+  ExportBankMSP reads: {"interestRateBps":410,"riskRating":"B"}
+  ImportBankMSP reads: {"interestRateBps":410,"riskRating":"B"}
+  CustomsMSP reads: tx creator does not have read access permission on private
+  CustomsMSP guesses: 410 bps, rating B, found in 2412 guesses, 0.01 s
+== 2. With 32 random bytes of salt
+  ImportBank stores LC-71B: committed with status (VALID)
+  ExportBankMSP reads: {"interestRateBps":410,"riskRating":"B","salt":"0fae638825
+  ImportBankMSP reads: {"interestRateBps":410,"riskRating":"B","salt":"0fae638825
+  CustomsMSP reads: tx creator does not have read access permission on private
+  CustomsMSP guesses: no match in 10005 guesses, 0.03 s
+== 3. CustomsAuthority checks the copy ImportBank gave it
+  VerifyTerms: match

@@ -1,0 +1,3 @@
+Error: endorsement failure during query. response: status:500 
+message:"GET_QUERY_RESULT failed: transaction ID: ...: ExecuteQueryWithMetadata 
+not supported for leveldb"

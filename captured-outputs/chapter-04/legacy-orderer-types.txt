@@ -1,0 +1,10 @@
+== OrdererType: kafka
+2026-10-24 21:28:15.641 CET 0003 PANI [common.tools.configtxgen.localconfig] completeInitialization -> unknown orderer type: kafka
+2026-10-24 21:28:15.641 CET 0004 PANI [common.tools.configtxgen] func1 -> unknown orderer type: kafka
+== OrdererType: solo
+2026-10-24 21:28:15.696 CET 0006 INFO [common.tools.configtxgen] doOutputBlock -> Writing genesis block
+Status: 400
+{
+	"error": "cannot join: failed to find a consenter for consensus type: solo"
+}
+

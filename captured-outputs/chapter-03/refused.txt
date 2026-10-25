@@ -1,0 +1,7 @@
+== 1. ImportBank's administrator has no lc.role attribute
+message:"only an LC officer (lc.role=issuer) may issue a letter of credit"
+== 2. The LC officer issues LC-2026-002; ImportBank then tries to accept its own LC
+committed with status (VALID)
+message:"Org2MSP may not accept letter of credit; only Org1MSP may"
+== 3. ExportBank presents documents before accepting
+message:"letter of credit LC-2026-002 is ISSUED; it must be ACCEPTED to become DOCUMENTS_PRESENTED"

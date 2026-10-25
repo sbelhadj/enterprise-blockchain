@@ -1,0 +1,7 @@
+2026-10-24 17:48:34.200 CET 0001 INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
+Channels peers has joined: 
+mychannel
+2026-10-24 17:48:34.248 CET 0001 INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
+Blockchain info: {"height":7,"currentBlockHash":"5VmZN1DEnrPgjrk9+LaP4RXcL2mFFkUSiLlVmomF3TQ=","previousBlockHash":"qtS8dXmFcGoF08jqH5sEDj1O4GxAWXnH+FNZHpxcGms="}
+Committed chaincode definition for chaincode 'basic' on channel 'mychannel':
+Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]

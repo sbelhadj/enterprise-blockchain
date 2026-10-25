@@ -1,0 +1,41 @@
+== 1. Build: compiled code, manifest, lock file and CouchDB indexes only
+
+added 285 packages in 3s
+META-INF/statedb/couchdb/indexes/indexStatus.json
+dist/index.d.ts
+dist/index.js
+dist/index.js.map
+dist/lcContract.d.ts
+dist/lcContract.js
+dist/lcContract.js.map
+dist/letterOfCredit.d.ts
+dist/letterOfCredit.js
+dist/letterOfCredit.js.map
+dist/validation.d.ts
+dist/validation.js
+dist/validation.js.map
+package-lock.json
+package.json
+== 2. Package
+package ID: lc_1.0:74fa5098b2927c74ea3dd346f4283df78f05e6679b26019dfa1ff27bce82bdd5
+== 3. Install on peer0.org1
+2026-10-24 20:46:57.107 CET 0001 INFO [cli.lifecycle.chaincode] submitInstallProposal -> Installed remotely: response:{status:200 payload:"\nGlc_1.0:74fa5098b2927c74ea3dd346f4283df78f05e6679b26019dfa1ff27bce82bdd5\x12\x06lc_1.0"}
+2026-10-24 20:46:57.107 CET 0002 INFO [cli.lifecycle.chaincode] submitInstallProposal -> Chaincode code package identifier: lc_1.0:74fa5098b2927c74ea3dd346f4283df78f05e6679b26019dfa1ff27bce82bdd5
+== 4. Approve for Org1MSP
+2026-10-24 20:46:59.221 CET 0001 INFO [chaincodeCmd] ClientWait -> txid [7206abae49a4811ef9b20b73625a7c3100257a640900e2743bfc04bd3e6558ff] committed with status (VALID) at localhost:7051
+Chaincode definition for chaincode 'lc', version '1.0', sequence '1' on channel 'mychannel' approval status by org:
+Org1MSP: true
+Org2MSP: false
+== 3. Install on peer0.org2
+2026-10-24 20:47:02.075 CET 0001 INFO [cli.lifecycle.chaincode] submitInstallProposal -> Installed remotely: response:{status:200 payload:"\nGlc_1.0:74fa5098b2927c74ea3dd346f4283df78f05e6679b26019dfa1ff27bce82bdd5\x12\x06lc_1.0"}
+2026-10-24 20:47:02.075 CET 0002 INFO [cli.lifecycle.chaincode] submitInstallProposal -> Chaincode code package identifier: lc_1.0:74fa5098b2927c74ea3dd346f4283df78f05e6679b26019dfa1ff27bce82bdd5
+== 4. Approve for Org2MSP
+2026-10-24 20:47:04.156 CET 0001 INFO [chaincodeCmd] ClientWait -> txid [678e01b3a462c6a95200e342781a42a7c4d834b03b096982030a7a05a00030bc] committed with status (VALID) at localhost:9051
+Chaincode definition for chaincode 'lc', version '1.0', sequence '1' on channel 'mychannel' approval status by org:
+Org1MSP: true
+Org2MSP: true
+== 5. Commit, endorsed by both organizations
+2026-10-24 20:47:06.301 CET 0001 INFO [chaincodeCmd] ClientWait -> txid [27cb5aa1a0600431a4145ca1f413e65fb81a5e06766bf5dc96be7c59f41745f7] committed with status (VALID) at localhost:9051
+2026-10-24 20:47:06.304 CET 0002 INFO [chaincodeCmd] ClientWait -> txid [27cb5aa1a0600431a4145ca1f413e65fb81a5e06766bf5dc96be7c59f41745f7] committed with status (VALID) at localhost:7051
+Committed chaincode definition for chaincode 'lc' on channel 'mychannel':
+Version: 1.0, Sequence: 1, Endorsement Plugin: escc, Validation Plugin: vscc, Approvals: [Org1MSP: true, Org2MSP: true]

@@ -1,0 +1,9 @@
+run 1: both in block 14, owner afterwards ShippingLine
+  transfer to ShippingLine      position 0, code 0
+  transfer to CustomsAuthority  position 1, code 11
+run 2: both in block 15, owner afterwards CustomsAuthority
+  transfer to ShippingLine      position 1, code 11
+  transfer to CustomsAuthority  position 0, code 0
+run 3: both in block 16, owner afterwards CustomsAuthority
+  transfer to ShippingLine      position 1, code 11
+  transfer to CustomsAuthority  position 0, code 0

@@ -1,0 +1,32 @@
+== 1. Healthy cluster
+node                   raft-leader  raft-active    bft-leader-id  bft-view 
+orderer.example.com    yes          3              1              0        
+orderer2.example.com   no           3              1              0        
+orderer3.example.com   no           3              1              0        
+orderer4.example.com   -            -              1              0        
+leader: orderer; the client sends to orderer2
+bft-1792875377-1 via orderer2: committed with status (VALID) (2.2 s)
+== 2. Stop the leader: three of four nodes remain, enough for 2f + 1 = 3
+orderer.example.com
+bft-1792875377-2 via orderer2: Error: timed out waiting for txid on all peers (30.1 s)
+view change to leader orderer2 completed 60 s after the stop
+21:57:19.583 INFO ChangeRole -> Changing to leader role, current view: 1, current leader: 2
+bft-1792875377-3 via orderer2: committed with status (VALID) (0.2 s)
+== 3. Stop a second node: two of four remain, fewer than 2f + 1
+orderer3.example.com
+node                   raft-leader  raft-active    bft-leader-id  bft-view 
+orderer.example.com    down
+orderer2.example.com   no           2              2              1        
+orderer3.example.com   down
+orderer4.example.com   -            -              2              1        
+bft-1792875377-4 via orderer2: Error: timed out waiting for txid on all peers (30.1 s)
+== 4. Restart both stopped nodes and wait until ordering works again
+orderer.example.com
+orderer3.example.com
+bft-1792875377-5-3 via orderer2: committed with status (VALID) (2.8 s)
+ordering resumed 63 s after the restart, on attempt 3
+node                   raft-leader  raft-active    bft-leader-id  bft-view 
+orderer.example.com    no           3              3              2        
+orderer2.example.com   yes          3              3              2        
+orderer3.example.com   no           3              3              2        
+orderer4.example.com   -            -              3              2        

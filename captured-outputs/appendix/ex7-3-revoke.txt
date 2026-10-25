@@ -1,0 +1,10 @@
+== 1. Enroll trader8 at ImportBank's CA
+  trader8: committed with status (VALID)
+== 2. Revoke at the CA: the clock starts
+  trader8: committed with status (VALID)
+== 3. ImportBank updates its MSP in the channel: the clock stops at commit
+  Successfully submitted channel update
+  revoked certificate accepted for 2.5 s by this script
+== 4. The same calls again
+  trader8: access denied: channel [lcchannel] creator org [ImportBankMSP]
+  user1: committed with status (VALID)

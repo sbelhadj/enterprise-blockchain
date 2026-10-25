@@ -1,0 +1,14 @@
+== 1. Renew peer0.customs's TLS certificate, then restart the peer
+  old: serial 076A5F26D6BC59F8..., valid until Oct 25 08:01:00 2027 GMT
+  new: serial 74DC6781E5A9A60B..., with a new key
+  peer0.customs back: "height":14
+== 2. Renew ExportBank's admin certificate
+  old serial 709F8AFA21318CCB..., new serial 036D92A938E24B1D...
+== 3. Revoke the old certificate and publish the CRL in the channel
+  ExportBankMSP signs and submits: Successfully submitted channel update
+== 4. Old and new admin certificates
+  new, read the channel config: Received block: 15
+  new, list chaincode on its own peer: lc_1.1
+  old, read the channel config: FORBIDDEN
+  old, list chaincode on its own peer: lc_1.1
+traffic during the change: 2 transactions, 2 committed VALID

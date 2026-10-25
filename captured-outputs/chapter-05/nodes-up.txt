@@ -1,0 +1,12 @@
+ Container orderer0.exportbank.example.com  Started
+ Container orderer0.importbank.example.com  Started
+ Container orderer0.customs.example.com  Started
+ Container peer0.exportbank.example.com  Started
+ Container peer0.importbank.example.com  Started
+ Container peer0.customs.example.com  Started
+orderer0.exportbank.example.com  {"status":"OK","time":"2026-10-24T22:50:50.609794378+01:00"}
+orderer0.importbank.example.com  {"status":"OK","time":"2026-10-24T22:50:50.623045227+01:00"}
+orderer0.customs.example.com     {"status":"OK","time":"2026-10-24T22:50:50.634271839+01:00"}
+peer0.exportbank.example.com     {"status":"OK","time":"2026-10-24T22:50:50.648220685+01:00"}
+peer0.importbank.example.com     {"status":"OK","time":"2026-10-24T22:50:50.659288887+01:00"}
+peer0.customs.example.com        {"status":"OK","time":"2026-10-24T22:50:50.673276997+01:00"}

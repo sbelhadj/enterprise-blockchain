@@ -1,0 +1,20 @@
+{
+  "name": "lc-audit",
+  "version": "1.0.0",
+  "description": "Block listener that writes an audit log, Book 4, Chapter 7",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "audit": "node dist/audit-log.js"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@grpc/grpc-js": "1.14.6",
+    "@hyperledger/fabric-gateway": "1.13.0",
+    "@hyperledger/fabric-protos": "0.3.7"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.1",
+    "typescript": "5.9.3"
+  }
+}

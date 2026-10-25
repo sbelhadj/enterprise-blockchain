@@ -1,0 +1,8 @@
+== 1. Evaluate on a fresh key: nothing is committed
+2026-10-24 20:47:57.389 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+{"thisTx":"bff96e8c","readBeforePut":"","readAfterPut":""}
+== 2. Submit the same call, so the write to k1 is committed
+status:200 payload:"{\"thisTx\":\"a2db8b24\",\"readBeforePut\":\"\",\"readAfterPut\":\"\"}"
+== 3. Evaluate again: reads see the committed value, never this transaction's write
+2026-10-24 20:47:59.578 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+{"thisTx":"7339dcb6","readBeforePut":"written by a2db8b24","readAfterPut":"written by a2db8b24"}

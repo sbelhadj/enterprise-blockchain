@@ -1,0 +1,41 @@
+  8 passing (13ms)
+Statements   : 100% ( 267/267 )
+Branches     : 100% ( 47/47 )
+
+
+  errors
+    ✔ maps chaincode refusals to client errors
+    ✔ reports unknown outcomes, conflicts and outages distinctly
+
+  identity
+    ✔ accepts the right bearer key and nothing else
+
+  withRetry
+    ✔ retries retryable failures and stops at the limit
+    ✔ does not retry other failures
+
+  retryable
+    ✔ retries MVCC conflicts and endorsers that disagreed, nothing else
+
+  maintenance database
+    ✔ applies each transaction once
+    ✔ rolls back a failed update
+
+  reconciliation
+    ✔ lists every difference between database and ledger
+
+  api
+    ✔ refuses requests without a valid key (52ms)
+    ✔ reads, submits under the caller and maps errors
+    ✔ serves the history page without a key
+
+
+  12 passing (126ms)
+
+
+=============================== Coverage summary ===============================
+Statements   : 73.34% ( 575/784 )
+Branches     : 90.19% ( 92/102 )
+Functions    : 79.31% ( 23/29 )
+Lines        : 73.34% ( 575/784 )
+================================================================================

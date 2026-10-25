@@ -1,0 +1,12 @@
+== 3 application organizations: 2 signatures needed
+ExportBankMSP signs
+ImportBankMSP signs and submits: Successfully submitted channel update
+== ShippingLineMSP joins its peer and approves the chaincode definition
+Successfully submitted proposal to join channel
+ShippingLineMSP  committed with status (VALID)
+2026-10-25 14:54:25 done  add shippingline
+2026-10-25 14:54:45 status
+  exportbank    peer0 OK   height 7
+  importbank    peer0 OK   height 7
+  customs       peer0 OK   height 7
+  shippingline  peer0 OK   height 7

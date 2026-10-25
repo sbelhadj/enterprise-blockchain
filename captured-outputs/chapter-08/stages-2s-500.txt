@@ -1,0 +1,8 @@
+newest block: 85 transactions, 5459 bytes each
+1000 transactions in 19 blocks, 52.6 per block
+peer   endorse one proposal (chaincode run)      7.39 ms
+orderer check one envelope on arrival          0.24 ms
+orderer write-ahead log fsync, per call        3.77 ms
+peer   validate one block                     61.00 ms
+peer   commit one block (of which state DB)   25.58 ms (8.60 ms)
+peer   validate and commit, per transaction    1.65 ms

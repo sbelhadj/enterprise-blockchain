@@ -1,0 +1,9 @@
+== Deploy basicand
+basicand 1.0, sequence 1, approved by Org1MSP Org2MSP
+== CreateAsset on basicand, endorsed by peer0.org1 only
+committed with status (ENDORSEMENT_POLICY_FAILURE)
+== The orderer put it in a block; the peer recorded why it is invalid
+block: 20, position in block: 0
+validation code: 10
+creator: Org1MSP
+endorsed by: Org1MSP

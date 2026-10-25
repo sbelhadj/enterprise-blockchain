@@ -1,0 +1,20 @@
+== peer0.org2.example.com
+  file                     subject      OU     issuer      key    expires
+  cacerts/ca.org2.exam     ca.org2             ca.org2     ECDSA  2036-10-22
+  signcerts/peer0.org2.e   peer0.org2   peer   ca.org2     ECDSA  2036-10-22
+  tlscacerts/tlsca.org2.e  tlsca.org2          tlsca.org2  ECDSA  2036-10-22
+  tls/ca.crt               tlsca.org2          tlsca.org2  ECDSA  2036-10-22
+  tls/server.crt           peer0.org2          tlsca.org2  ECDSA  2036-10-22
+== Admin@org1.example.com
+  file                     subject      OU     issuer      key    expires
+  cacerts/ca.org1.exam     ca.org1             ca.org1     ECDSA  2036-10-22
+  signcerts/Admin@org1.e   Admin@org1   admin  ca.org1     ECDSA  2036-10-22
+  tlscacerts/tlsca.org1.e  tlsca.org1          tlsca.org1  ECDSA  2036-10-22
+  tls/ca.crt               tlsca.org1          tlsca.org1  ECDSA  2036-10-22
+  tls/client.crt           Admin@org1          tlsca.org1  ECDSA  2036-10-22
+== Why Admin@org1 is an administrator
+subject=/C=US/ST=California/L=San Francisco/OU=admin/CN=Admin@org1.example.com
+    AdminOUIdentifier:
+        Certificate: cacerts/ca.org1.example.com-cert.pem
+        OrganizationalUnitIdentifier: admin
+Admin@org1.example.com-cert.pem: OK

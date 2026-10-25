@@ -1,0 +1,19 @@
+{
+  "name": "lc-client",
+  "version": "1.0.0",
+  "description": "Fabric Gateway client for the letter of credit chaincode (Book 4, Chapter 3)",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "issue": "node dist/issue-lc.js"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@grpc/grpc-js": "1.14.6",
+    "@hyperledger/fabric-gateway": "1.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.1",
+    "typescript": "5.9.3"
+  }
+}

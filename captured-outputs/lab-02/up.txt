@@ -1,0 +1,50 @@
+== generate
+generated in ~/enterprise-blockchain/lab-02-pharmatrace/build:
+  compose-ca.yaml compose-net.yaml configtx.yaml .secrets/network.env
+  state database: goleveldb
+== cas
+ca.manufacturer.example.com    port 7054   root valid until Oct 21 07:00:00 2041 GMT
+tlsca.manufacturer.example.com port 7055   root valid until Oct 21 07:00:00 2041 GMT
+ca.distributor.example.com     port 8054   root valid until Oct 21 07:00:00 2041 GMT
+tlsca.distributor.example.com  port 8055   root valid until Oct 21 07:00:00 2041 GMT
+ca.pharmacy.example.com        port 9054   root valid until Oct 21 07:00:00 2041 GMT
+tlsca.pharmacy.example.com     port 9055   root valid until Oct 21 07:00:00 2041 GMT
+ca.regulator.example.com       port 10054  root valid until Oct 21 07:00:00 2041 GMT
+tlsca.regulator.example.com    port 10055  root valid until Oct 21 07:00:00 2041 GMT
+== identities
+ManufacturerMSP: admin ca-admin orderer0 peer0 pharmatrace tlsca-admin user1 
+DistributorMSP: admin ca-admin orderer0 peer0 pharmatrace tlsca-admin user1 
+PharmacyMSP: admin ca-admin peer0 pharmatrace tlsca-admin user1 
+RegulatorMSP: admin ca-admin orderer0 peer0 pharmatrace tlsca-admin user1 
+ManufacturerMSP: every identity has the expected role and chain
+DistributorMSP: every identity has the expected role and chain
+PharmacyMSP: every identity has the expected role and chain
+RegulatorMSP: every identity has the expected role and chain
+== nodes
+orderer0.manufacturer.example.com  OK
+peer0.manufacturer.example.com     OK
+orderer0.distributor.example.com   OK
+peer0.distributor.example.com      OK
+peer0.pharmacy.example.com         OK
+orderer0.regulator.example.com     OK
+peer0.regulator.example.com        OK
+== channel
+orderer type: etcdraft
+orderer0.manufacturer.example.com joins pharmachannel: Status: 201
+orderer0.distributor.example.com joins pharmachannel: Status: 201
+orderer0.regulator.example.com joins pharmachannel: Status: 201
+peer0.manufacturer.example.com joins pharmachannel: "height":1
+peer0.distributor.example.com joins pharmachannel: "height":1
+peer0.pharmacy.example.com joins pharmachannel: "height":1
+peer0.regulator.example.com joins pharmachannel: "height":1
+== deploy
+ManufacturerMSP  committed with status (VALID)
+DistributorMSP   committed with status (VALID)
+PharmacyMSP      committed with status (VALID)
+RegulatorMSP     committed with status (VALID)
+commit: committed with status (VALID) at localhost:9051
+commit: committed with status (VALID) at localhost:10051
+commit: committed with status (VALID) at localhost:8051
+commit: committed with status (VALID) at localhost:7051
+committed: version 1.0, sequence 1
+approved by: DistributorMSP ManufacturerMSP PharmacyMSP RegulatorMSP

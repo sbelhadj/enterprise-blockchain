@@ -1,0 +1,13 @@
+== 1. TLS name mismatch: the client expects another host name
+x509: certificate is valid for peer0.customs.example.com, localhost, not 
+peer0.customs.example.org
+== 2. NodeOUs off for a client: its identity has no role
+administrators must be declared when no admin ou classification is set
+== 3. An organization without OrdererEndpoints under the V3_0 capability
+orderer endpoints for organization ShippingLineMSP are missing and must be 
+configured when capability V3_0 is enabled
+== 4. The chaincode server is not running
+could not launch chaincode shipment_1.0
+grpc connection to shipment.customs.example.com:9099
+connection refused
+after restart: GATED_OUT

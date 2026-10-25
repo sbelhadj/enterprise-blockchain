@@ -1,0 +1,6 @@
+== ImportBank's LC officer issues LC-2026-101: committed with status (VALID)
+== ExportBank accepts it: committed with status (VALID)
+== read by ExportBankMSP on peer0.exportbank.example.com
+{"id":"LC-2026-101","status":"ACCEPTED","issuingBank":"ImportBankMSP","advisingBank":"ExportBankMSP","amount":12500000,"currency":"USD"}
+== read by ImportBankMSP on peer0.importbank.example.com
+{"id":"LC-2026-101","status":"ACCEPTED","issuingBank":"ImportBankMSP","advisingBank":"ExportBankMSP","amount":12500000,"currency":"USD"}

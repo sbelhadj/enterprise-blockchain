@@ -1,0 +1,43 @@
+
+> pharmatrace-chaincode@1.0.0 lint
+> eslint src
+
+
+> pharmatrace-chaincode@1.0.0 coverage
+> c8 mocha
+
+
+
+  PharmaTraceContract
+    ✔ is the exported contract
+    ✔ checks GS1 check digits
+    ✔ produces a batch; the maker holds it
+    ✔ validates production input and caller
+    ✔ refuses a duplicate batch or a serial already registered
+    ✔ moves custody with both parties named in the key policy
+    ✔ refuses bad shipments and receipts
+    ✔ dispenses units; the batch is DISPENSED when all are gone
+    ✔ refuses dispensing by others, twice, of unknown units, early
+    ✔ recalls once, for the regulator or maker, with a reason
+    ✔ verifies unknown and malformed serials
+    ✔ stores price terms privately, from transient data only
+    ✔ returns the history oldest first and refuses unknown batches
+
+
+  13 passing (44ms)
+
+------------------------|---------|----------|---------|---------|-------------------
+File                    | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
+------------------------|---------|----------|---------|---------|-------------------
+All files               |     100 |      100 |     100 |     100 |                   
+ batch.ts               |     100 |      100 |     100 |     100 |                   
+ index.ts               |     100 |      100 |     100 |     100 |                   
+ pharmaTraceContract.ts |     100 |      100 |     100 |     100 |                   
+------------------------|---------|----------|---------|---------|-------------------
+
+=============================== Coverage summary ===============================
+Statements   : 100% ( 356/356 )
+Branches     : 100% ( 92/92 )
+Functions    : 100% ( 18/18 )
+Lines        : 100% ( 356/356 )
+================================================================================

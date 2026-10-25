@@ -1,0 +1,32 @@
+# Settings shared by every orderer and peer; network.sh adds the per-node values.
+x-orderer-env: &orderer-env
+  ORDERER_GENERAL_LISTENADDRESS: 0.0.0.0
+  ORDERER_GENERAL_LOCALMSPDIR: /etc/hyperledger/crypto/msp
+  ORDERER_GENERAL_TLS_ENABLED: "true"
+  ORDERER_GENERAL_TLS_PRIVATEKEY: /etc/hyperledger/crypto/tls/server.key
+  ORDERER_GENERAL_TLS_CERTIFICATE: /etc/hyperledger/crypto/tls/server.crt
+  ORDERER_GENERAL_TLS_ROOTCAS: "[/etc/hyperledger/crypto/tls/ca.crt]"
+  ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE: /etc/hyperledger/crypto/tls/server.crt
+  ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY: /etc/hyperledger/crypto/tls/server.key
+  ORDERER_GENERAL_BOOTSTRAPMETHOD: none      # channels are joined with osnadmin
+  ORDERER_CHANNELPARTICIPATION_ENABLED: "true"
+  ORDERER_ADMIN_TLS_ENABLED: "true"
+  ORDERER_ADMIN_TLS_CERTIFICATE: /etc/hyperledger/crypto/tls/server.crt
+  ORDERER_ADMIN_TLS_PRIVATEKEY: /etc/hyperledger/crypto/tls/server.key
+  ORDERER_ADMIN_TLS_ROOTCAS: "[/etc/hyperledger/crypto/tls/ca.crt]"
+  ORDERER_ADMIN_TLS_CLIENTAUTHREQUIRED: "true"
+  # admin clients must hold a certificate from this organization's own TLS CA
+  ORDERER_ADMIN_TLS_CLIENTROOTCAS: "[/etc/hyperledger/crypto/tls/ca.crt]"
+  ORDERER_METRICS_PROVIDER: prometheus
+  FABRIC_LOGGING_SPEC: INFO
+
+x-peer-env: &peer-env
+  CORE_PEER_MSPCONFIGPATH: /etc/hyperledger/crypto/msp
+  CORE_PEER_TLS_ENABLED: "true"
+  CORE_PEER_TLS_CERT_FILE: /etc/hyperledger/crypto/tls/server.crt
+  CORE_PEER_TLS_KEY_FILE: /etc/hyperledger/crypto/tls/server.key
+  CORE_PEER_TLS_ROOTCERT_FILE: /etc/hyperledger/crypto/tls/ca.crt
+  CORE_PEER_PROFILE_ENABLED: "false"
+  CORE_METRICS_PROVIDER: prometheus
+  CORE_VM_ENDPOINT: ""      # no Docker socket: chaincode runs as a service
+  FABRIC_LOGGING_SPEC: INFO

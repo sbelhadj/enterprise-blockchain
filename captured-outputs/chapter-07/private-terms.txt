@@ -1,0 +1,23 @@
+== 1. ImportBank stores the terms as transient data
+committed with status (VALID)
+== 2. Each organization reads them from its own peer
+ExportBankMSP: {"discountRateBps":410,"feeBps":35,"settlementAccount":"ACC-IMP-0042"}
+ImportBankMSP: {"discountRateBps":410,"feeBps":35,"settlementAccount":"ACC-IMP-0042"}
+CustomsMSP: tx creator does not have read access permission on privatedata in chaincodeName:lcterms collectionName: lcBankTerms
+== 3. The hash each peer holds, and the same hash computed here
+ExportBankMSP: 5c4863a3cc4961fea5711823eed23241d823f52643d49bcc33f066fac23c6150
+ImportBankMSP: 5c4863a3cc4961fea5711823eed23241d823f52643d49bcc33f066fac23c6150
+CustomsMSP: 5c4863a3cc4961fea5711823eed23241d823f52643d49bcc33f066fac23c6150
+sha256 of the canonical terms: 5c4863a3cc4961fea5711823eed23241d823f52643d49bcc33f066fac23c6150
+== 4. CustomsAuthority checks a copy it was given, and a tampered one
+copy:     match
+tampered: no match
+== 5. What the transaction on CustomsAuthority's peer contains
+arguments: PutTerms LC-2026-101
+lcBankTerms: key hash 37259df673448386..., purge false
+  value hash 5c4863a3cc4961fea5711823eed23241d823f52643d49bcc33f066fac23c6150
+occurrences of the account number: 0
+== 6. A note only ImportBank holds, in its implicit collection
+committed with status (VALID)
+ImportBankMSP: Applicant within limit; collateral 20 percent
+ExportBankMSP: no credit note for LC-2026-101 in _implicit_org_ExportBankMSP

@@ -1,0 +1,34 @@
+
+== 1. ImportBank's admin calls the channel participation API of ExportBank's orderer
+Error: Get "https://localhost:7053/participation/v1/channels": remote error: tls: certificate required
+
+== 2. The client trusts the wrong TLS CA for the orderer
+Error: error getting broadcast client: orderer client failed to connect to localhost:7050: failed to create new connection: context deadline exceeded
+
+== 3. The MSP ID does not match the certificate
+access denied: channel [lcchannel] creator org unknown, creator is malformed
+
+== 4. A client identity tries to join a peer to the channel
+access denied for [JoinChain][lcchannel]
+The identity does not contain OU [ADMIN]
+
+== 5. An administrator joins a peer that is already on the channel
+ledger [lcchannel] already exists with state [ACTIVE]
+
+== 6. Enrollment with a wrong secret
+Error: Response from server: Error Code: 20 - Authentication failure
+
+== 7. A definition committed before enough organizations approved it
+chaincode definition not agreed to by this org (ExportBankMSP)
+
+== 8. ExportBank's chaincode server is down
+could not launch chaincode lc_1.1
+error creating grpc connection to lc.exportbank.example.com:7099
+connect: connection refused
+
+== 9. Two of three orderers are down
+got unexpected status: SERVICE_UNAVAILABLE -- no Raft leader
+
+== 10. ExportBank's chaincode server runs with a package ID the peer does not expect
+client: no answer after 20 s (exit code 124)
+peer log: failed to start lc_1.0:0000 -- peer will not accept external chaincode connection lc_1.0:0000 (except in dev mode)

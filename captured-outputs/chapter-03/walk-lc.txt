@@ -1,0 +1,14 @@
+== ExportBank accepts the LC
+2026-10-24 20:47:14.730 CET 0002 INFO [chaincodeCmd] ClientWait -> txid [6186e5dcb8c93a178c3909a9941e84c9adc8ad4862d801f168dc6ee48e851d79] committed with status (VALID) at localhost:9051
+== ExportBank presents the documents; only their SHA-256 goes on the ledger
+2026-10-24 20:47:16.824 CET 0002 INFO [chaincodeCmd] ClientWait -> txid [1daa6373883173dc4b52d568e90c77ca8f77a08af7c0805f0101f788b3352ec1] committed with status (VALID) at localhost:7051
+== ImportBank pays
+2026-10-24 20:47:18.910 CET 0002 INFO [chaincodeCmd] ClientWait -> txid [2736e323f0a7e77c32dd49a6f510c241c6e0e5ddce296df3721605d0e691a09d] committed with status (VALID) at localhost:9051
+2026-10-24 20:47:18.963 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+{
+  "id": "LC-2026-001",
+  "status": "PAID",
+  "documentsHash": "02ae3fc87cbb6a9d9bd86c8aecee20dc23826544b12a69036ca658a81b3b5abc",
+  "issuedAt": "2026-10-24T19:47:10.435Z",
+  "updatedAt": "2026-10-24T19:47:16.889Z"
+}

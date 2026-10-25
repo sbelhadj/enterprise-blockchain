@@ -1,0 +1,33 @@
+== 3.5: LCs issued under 1.0 and 1.1, read with 1.2
+{"id":"LC-V10","status":"ISSUED","amount":50000000,"rejectionReason":null}
+{"id":"LC-V11","status":"ISSUED","amount":120000000,"rejectionReason":null}
+== 3.5: LC-V10, issued under 1.0, is paid under 1.2
+  AcceptLC: committed (VALID)
+  PresentDocuments: committed (VALID)
+  PayLC: committed (VALID)
+{"id":"LC-V10","status":"PAID"}
+== 3.1: AmendLC and RejectLC
+  ExportBank amends LC-V11
+    Org1MSP may not amend letter of credit; only Org2MSP may
+  ImportBank amends LC-V11
+    committed (VALID)
+{"id":"LC-V11","status":"ISSUED","amount":130000000,"expiryDate":"2027-04-23"}
+  ImportBank rejects LC-V11
+    Org2MSP may not reject letter of credit; only Org1MSP may
+  ExportBank rejects LC-V11
+    committed (VALID)
+{"id":"LC-V11","status":"REJECTED","rejectionReason":"goods not eligible"}
+  ExportBank rejects it again
+    letter of credit LC-V11 is REJECTED; it must be ISSUED to become REJECTED
+== 3.2: five LCs for one beneficiary, two for another
+  IssueLC LC-B1 for Sfax Olive Oil Co: committed (VALID)
+  IssueLC LC-B2 for Sfax Olive Oil Co: committed (VALID)
+  IssueLC LC-B3 for Sfax Olive Oil Co: committed (VALID)
+  IssueLC LC-B4 for Sfax Olive Oil Co: committed (VALID)
+  IssueLC LC-B5 for Sfax Olive Oil Co: committed (VALID)
+  IssueLC LC-B6 for Nabeul Ceramics: committed (VALID)
+  IssueLC LC-B7 for Nabeul Ceramics: committed (VALID)
+  page 1: ["LC-B1","LC-B2"], bookmark AGJlbmVmaWNpYXJ5fmxjAFNm...
+  page 2: ["LC-B3","LC-B4"], bookmark AGJlbmVmaWNpYXJ5fmxjAFNm...
+  page 3: ["LC-B5"], bookmark (none)
+  Nabeul Ceramics: ["LC-B6","LC-B7"]

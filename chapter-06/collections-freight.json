@@ -1,0 +1,26 @@
+[
+  {
+    "name": "invoiceCarrierA",
+    "policy": "OR('RetailerMSP.member', 'CarrierAMSP.member')",
+    "requiredPeerCount": 1,
+    "maxPeerCount": 2,
+    "blockToLive": 0,
+    "memberOnlyRead": true,
+    "memberOnlyWrite": true,
+    "endorsementPolicy": {
+      "signaturePolicy": "AND('RetailerMSP.peer', 'CarrierAMSP.peer')"
+    }
+  },
+  {
+    "name": "invoiceCarrierB",
+    "policy": "OR('RetailerMSP.member', 'CarrierBMSP.member')",
+    "requiredPeerCount": 1,
+    "maxPeerCount": 2,
+    "blockToLive": 0,
+    "memberOnlyRead": true,
+    "memberOnlyWrite": true,
+    "endorsementPolicy": {
+      "signaturePolicy": "AND('RetailerMSP.peer', 'CarrierBMSP.peer')"
+    }
+  }
+]

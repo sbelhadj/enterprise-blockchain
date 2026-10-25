@@ -1,0 +1,15 @@
+PASS  wallet keys are readable by the service account only (600)
+PASS  wallet and secrets folders are closed to others (700)
+PASS  the users file holds key hashes, not keys
+PASS  wallet, secrets, data and build are ignored by Git
+PASS  no key or secret file is tracked by Git
+PASS  every peer connection uses TLS (no createInsecure)
+PASS  requests without an API key are refused (401)
+PASS  a wrong API key is refused (401)
+PASS  the API listens on 127.0.0.1 only
+PASS  an MRO user cannot act as the airline (403)
+PASS  the generator binds CouchDB ports to 127.0.0.1
+PASS  production dependencies have no known vulnerabilities (npm audit)
+NOTE  the API speaks plain HTTP on 127.0.0.1; TLS ends at a reverse proxy
+NOTE  API keys sit in .secrets/api-keys.env for the lab scripts only
+0 check(s) failed

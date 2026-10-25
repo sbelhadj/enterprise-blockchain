@@ -1,0 +1,8 @@
+ShippingLineMSP  committed with status (VALID)
+PortTerminalMSP  committed with status (VALID)
+CustomsMSP       committed with status (VALID)
+commit: committed with status (VALID) at localhost:8051
+commit: committed with status (VALID) at localhost:7051
+commit: committed with status (VALID) at localhost:9051
+committed: version 1.0, sequence 1
+approved by: CustomsMSP PortTerminalMSP ShippingLineMSP

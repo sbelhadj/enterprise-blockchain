@@ -1,0 +1,16 @@
+== 1. Two banks approve version 2.0 at sequence 2
+  ExportBankMSP   approves: committed with status (VALID)
+  ImportBankMSP   approves: committed with status (VALID)
+  readiness: Customs=false ExportBank=true ImportBank=true ShippingLine=false
+  commit with two approvals: committed with status (ENDORSEMENT_POLICY_FAILURE)
+== 2. CustomsAuthority approves: three of four is a majority
+  CustomsMSP      approves: committed with status (VALID)
+  readiness: Customs=true ExportBank=true ImportBank=true ShippingLine=false
+  commit: committed with status (VALID)
+  committed: version 2.0, sequence 2
+== 3. The new policy at work
+  endorsed by ExportBank and Customs: committed (ENDORSEMENT_POLICY_FAILURE)
+  endorsed by both banks:             committed (VALID)
+== 4. ShippingLine never approved version 2.0
+  chaincode definition for 'lc' at sequence 2 on channel 'lcchannel' has not 
+  yet been approved by this org

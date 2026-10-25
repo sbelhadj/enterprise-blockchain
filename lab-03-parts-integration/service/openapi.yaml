@@ -1,0 +1,163 @@
+openapi: 3.1.0
+info:
+  title: Aircraft parts integration API
+  version: 1.0.0
+  description: >-
+    Book 4, Lab 3. Reads and writes the shared parts ledger under each caller's own
+    Fabric identity, and exposes the maintenance system's copy of the records.
+servers:
+  - url: http://127.0.0.1:3000
+security:
+  - apiKey: []
+components:
+  securitySchemes:
+    apiKey:
+      type: http
+      scheme: bearer
+      description: One API key per user; the service stores only its SHA-256 hash.
+  schemas:
+    Part:
+      type: object
+      properties:
+        serial: {type: string, pattern: '^[A-Z0-9-]{3,32}$'}
+        partNumber: {type: string}
+        description: {type: string}
+        status:
+          type: string
+          enum: [SERVICEABLE, INSTALLED, UNSERVICEABLE, SCRAPPED]
+        aircraft: {type: string}
+        position: {type: string}
+        cycles: {type: integer}
+        lastDocHash: {type: string, pattern: '^[0-9a-f]{64}$'}
+        updatedBy: {type: string}
+        updatedAt: {type: string, format: date-time}
+    Committed:
+      type: object
+      properties:
+        txId: {type: string}
+        block: {type: integer}
+        attempts: {type: integer, description: 1 unless MVCC conflicts were retried}
+    Error:
+      type: object
+      properties:
+        error: {type: string}
+        detail: {type: string}
+        txId: {type: string}
+  responses:
+    Committed:
+      description: Committed
+      content:
+        application/json: {schema: {$ref: '#/components/schemas/Committed'}}
+    Rejected:
+      description: >-
+        The chaincode refused the request: 400 invalid input, 403 not allowed for
+        the caller's organization, 404 unknown part, 409 not allowed in the part's
+        state or an MVCC conflict that persisted after retries.
+      content:
+        application/json: {schema: {$ref: '#/components/schemas/Error'}}
+    Unknown:
+      description: >-
+        Submitted, but the commit status did not arrive in time. Do not resubmit;
+        ask GET /transactions/{txId}.
+      content:
+        application/json: {schema: {$ref: '#/components/schemas/Error'}}
+    Unauthorized:
+      description: Missing or invalid API key.
+paths:
+  /parts:
+    post:
+      summary: Register a new part (PartsMaker users)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [serial, partNumber, description, certHash]
+              properties:
+                serial: {type: string}
+                partNumber: {type: string}
+                description: {type: string}
+                certHash:
+                  type: string
+                  description: SHA-256 of the release certificate
+      responses:
+        '201': {$ref: '#/components/responses/Committed'}
+        '202': {$ref: '#/components/responses/Unknown'}
+        '400': {$ref: '#/components/responses/Rejected'}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '403': {$ref: '#/components/responses/Rejected'}
+        '409': {$ref: '#/components/responses/Rejected'}
+  /parts/{serial}:
+    parameters:
+      - {name: serial, in: path, required: true, schema: {type: string}}
+    get:
+      summary: Read a part from the ledger
+      responses:
+        '200':
+          description: The part
+          content:
+            application/json: {schema: {$ref: '#/components/schemas/Part'}}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+        '404': {$ref: '#/components/responses/Rejected'}
+  /parts/{serial}/history:
+    parameters:
+      - {name: serial, in: path, required: true, schema: {type: string}}
+    get:
+      summary: Every committed version of a part, oldest first
+      responses:
+        '200': {description: The history}
+        '401': {$ref: '#/components/responses/Unauthorized'}
+  /parts/{serial}/events:
+    parameters:
+      - {name: serial, in: path, required: true, schema: {type: string}}
+    post:
+      summary: Record INSTALL, REMOVE, REPAIR or SCRAP
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [type]
+              properties:
+                type: {type: string, enum: [INSTALL, REMOVE, REPAIR, SCRAP]}
+                aircraft: {type: string, description: Registration, for INSTALL}
+                position: {type: string, description: Position, for INSTALL}
+                docHash: {type: string, description: Certificate hash, for REPAIR}
+      responses:
+        '200': {$ref: '#/components/responses/Committed'}
+        '202': {$ref: '#/components/responses/Unknown'}
+        '400': {$ref: '#/components/responses/Rejected'}
+        '403': {$ref: '#/components/responses/Rejected'}
+        '404': {$ref: '#/components/responses/Rejected'}
+        '409': {$ref: '#/components/responses/Rejected'}
+  /parts/{serial}/cycles:
+    parameters:
+      - {name: serial, in: path, required: true, schema: {type: string}}
+    post:
+      summary: Add flight cycles to an installed part (Airline users)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [cycles]
+              properties:
+                cycles: {type: integer, minimum: 1, maximum: 100}
+      responses:
+        '200': {$ref: '#/components/responses/Committed'}
+        '409': {$ref: '#/components/responses/Rejected'}
+  /transactions/{txId}:
+    parameters:
+      - {name: txId, in: path, required: true, schema: {type: string}}
+    get:
+      summary: Validation code of a transaction, or NOT_FOUND
+      responses:
+        '200': {description: 'For example {"txId": "...", "status": "VALID"}'}
+  /maintenance/parts:
+    get:
+      summary: The maintenance system's copy of every part, from its own database
+      responses:
+        '200': {description: Rows of the parts table}

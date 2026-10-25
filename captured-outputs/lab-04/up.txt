@@ -1,0 +1,50 @@
+== generate
+generated in ~/enterprise-blockchain/lab-04-governance-drill/build:
+  compose-ca.yaml compose-net.yaml configtx.yaml .secrets/network.env
+  state database: goleveldb
+== cas
+ca.exportbank.example.com      port 7054   root valid until Oct 21 07:56:00 2041 GMT
+tlsca.exportbank.example.com   port 7055   root valid until Oct 21 07:56:00 2041 GMT
+ca.importbank.example.com      port 8054   root valid until Oct 21 07:56:00 2041 GMT
+tlsca.importbank.example.com   port 8055   root valid until Oct 21 07:56:00 2041 GMT
+ca.customs.example.com         port 9054   root valid until Oct 21 07:56:00 2041 GMT
+tlsca.customs.example.com      port 9055   root valid until Oct 21 07:56:00 2041 GMT
+ca.shippingline.example.com    port 10054  root valid until Oct 21 07:56:00 2041 GMT
+tlsca.shippingline.example.com port 10055  root valid until Oct 21 07:56:00 2041 GMT
+== identities
+ExportBankMSP: admin ca-admin lc orderer0 peer0 tlsca-admin user1 
+ImportBankMSP: admin ca-admin lc lcofficer orderer0 peer0 tlsca-admin user1 
+CustomsMSP: admin ca-admin lc orderer0 peer0 tlsca-admin user1 
+ShippingLineMSP: admin ca-admin lc orderer0 peer0 tlsca-admin user1 
+ExportBankMSP: every identity has the expected role and chain
+ImportBankMSP: every identity has the expected role and chain
+CustomsMSP: every identity has the expected role and chain
+ShippingLineMSP: every identity has the expected role and chain
+== nodes
+orderer0.exportbank.example.com    OK
+peer0.exportbank.example.com       OK
+orderer0.importbank.example.com    OK
+peer0.importbank.example.com       OK
+orderer0.customs.example.com       OK
+peer0.customs.example.com          OK
+peer0.shippingline.example.com     OK
+== channel
+orderer type: etcdraft
+orderer0.exportbank.example.com joins lcchannel: Status: 201
+orderer0.importbank.example.com joins lcchannel: Status: 201
+orderer0.customs.example.com joins lcchannel: Status: 201
+peer0.exportbank.example.com joins lcchannel: "height":1
+peer0.importbank.example.com joins lcchannel: "height":1
+peer0.customs.example.com joins lcchannel: "height":1
+peer0.shippingline.example.com joins lcchannel: "height":1
+== deploy
+ExportBankMSP    committed with status (VALID)
+ImportBankMSP    committed with status (VALID)
+CustomsMSP       committed with status (VALID)
+ShippingLineMSP  committed with status (VALID)
+commit: committed with status (VALID) at localhost:8051
+commit: committed with status (VALID) at localhost:10051
+commit: committed with status (VALID) at localhost:7051
+commit: committed with status (VALID) at localhost:9051
+committed: version 1.1, sequence 1
+approved by: CustomsMSP ExportBankMSP ImportBankMSP ShippingLineMSP

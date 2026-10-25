@@ -1,0 +1,27 @@
+2026-10-24 17:49:22.341 CET 0001 INFO [channelCmd] InitCmdFactory -> Endorser and orderer connections initialized
+2026-10-24 17:49:22.343 CET 0002 INFO [cli.common] readBlock -> Received block: 6
+2026-10-24 17:49:22.343 CET 0003 INFO [channelCmd] fetch -> Retrieving last config block: 2
+2026-10-24 17:49:22.346 CET 0004 INFO [cli.common] readBlock -> Received block: 2
+config saved to work/config.json in the companion repository
+== Member organizations of the application side
+Org1MSP
+Org2MSP
+== Capabilities: channel, orderer, application
+[{"V2_0":{}},{"V2_0":{}},{"V2_5":{}}]
+== Application policies
+{"Admins":"MAJORITY Admins"}
+{"Endorsement":"MAJORITY Endorsement"}
+{"LifecycleEndorsement":"MAJORITY Endorsement"}
+{"Readers":"ANY Readers"}
+{"Writers":"ANY Writers"}
+== Ordering: type, consenters and batching
+"etcdraft"
+["orderer.example.com:7050"]
+{"timeout":"2s"}
+{"absolute_max_bytes":103809024,"max_message_count":10,"preferred_max_bytes":524288}
+== Anchor peers
+[{"host":"peer0.org1.example.com","port":7051}]
+[{"host":"peer0.org2.example.com","port":9051}]
+== Where peers find the orderers
+["orderer.example.com:7050"]
+["orderer.example.com:7050"]

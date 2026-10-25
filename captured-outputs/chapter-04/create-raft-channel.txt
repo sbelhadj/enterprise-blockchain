@@ -1,0 +1,13 @@
+21:55:22.939 INFO completeInitialization -> orderer type: etcdraft
+21:55:22.949 INFO doOutputBlock -> Writing genesis block
+Status: 201
+	"status": "active",
+	"height": 1
+Status: 201
+	"status": "active",
+	"height": 1
+Status: 201
+	"status": "active",
+	"height": 1
+Successfully submitted proposal to join channel
+Successfully submitted proposal to join channel

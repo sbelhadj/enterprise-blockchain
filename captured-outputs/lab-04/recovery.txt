@@ -1,0 +1,39 @@
+== 1. Two banks snapshot the same block
+  exportbank: Snapshot request submitted successfully
+  importbank: Snapshot request submitted successfully
+  block 27: committed (VALID)
+  exportbank: snapshot hash 0b99b97f660aef41, last block 27
+  importbank: snapshot hash 0b99b97f660aef41, last block 27
+== 2. peer0.customs loses its ledger and starts empty
+  channels on peer0.customs: 0
+== 3. It joins from ExportBank's snapshot and gets its chaincode back
+  Successfully submitted proposal to join channel
+  Chaincode code package identifier: lc_1.1:ed0a90e0da969
+  after one more transaction: committed (VALID)
+  the new LC read on peer0.customs: ISSUED
+  block 1 from peer0.customs: First available block = [28]
+== 4. orderer0.importbank loses its data and tries to rejoin as it was
+  join: Status: 201
+  tocommit(34) is out of range [lastIndex(0)]
+  Was the raft log corrupted, truncated, or lost?
+  orderer0.importbank: not reachable
+  orderer0.exportbank: consenter, active, height 29
+== 5. It leaves the consenter set, then rejoins empty as a follower
+  ImportBankMSP signs
+  ShippingLineMSP signs
+  ExportBankMSP signs and submits: Successfully submitted channel update
+  join: Status: 201
+  orderer0.importbank: follower, active, height 30
+== 6. It is added back as a consenter
+  ImportBankMSP signs
+  ShippingLineMSP signs
+  ExportBankMSP signs and submits: Successfully submitted channel update
+  after one more transaction: committed (VALID)
+  orderer0.exportbank: consenter, active, height 32
+  orderer0.importbank: consenter, active, height 32
+  orderer0.shippingline: consenter, active, height 32
+== 7. Every peer at the same height with the same last block
+  peer0.exportbank: height 32, last block wInxiQPwIN4efjEe
+  peer0.importbank: height 32, last block wInxiQPwIN4efjEe
+  peer0.customs: height 32, last block wInxiQPwIN4efjEe
+  peer0.shippingline: height 32, last block wInxiQPwIN4efjEe

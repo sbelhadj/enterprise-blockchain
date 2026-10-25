@@ -1,0 +1,12 @@
+== stop the leader, orderer0.portterminal.example.com
+  orderer0.shippingline.example.com  leader=1 cluster=3
+  orderer0.portterminal.example.com  down
+  orderer0.customs.example.com       leader=0 cluster=3
+== a shipment while it is down, sent to orderer0.shippingline.example.com
+   committed (VALID)
+== start it again
+  orderer0.shippingline.example.com  leader=1 cluster=3
+  orderer0.portterminal.example.com  leader=0 cluster=3
+  orderer0.customs.example.com       leader=0 cluster=3
+orderer0.portterminal.example.com height: "height": 10
+heights: shippingline=10 portterminal=10 customs=10

@@ -1,0 +1,9 @@
+peer0.forwarder.example.com        OK
+== FreightForwarderMSP's definition, without orderer endpoints, with its anchor peer
+FreightForwarderMSP policies: Admins Endorsement Readers Writers
+== 3 application organizations: 2 signatures needed
+ShippingLineMSP signs
+PortTerminalMSP signs and submits: Successfully submitted channel update
+== FreightForwarderMSP joins its peer and approves the chaincode definition
+Successfully submitted proposal to join channel
+FreightForwarderMSP committed with status (VALID)

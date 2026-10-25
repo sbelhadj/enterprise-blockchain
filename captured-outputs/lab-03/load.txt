@@ -1,0 +1,4 @@
+50 requests at 5/s to one part over 10 s:
+  22 x 200
+  28 x 409 MVCC_READ_CONFLICT
+committed after a retry: 16; latency p50 2108 ms, p95 8223 ms

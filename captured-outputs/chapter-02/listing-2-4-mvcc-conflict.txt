@@ -1,0 +1,53 @@
+2026-10-24 17:49:26.780 CET 0002 INFO [chaincodeCmd] ClientWait -> txid [685d4c831de9aa4ff040d9685c4f577896bb768ec00f5fe4186d7cfd6dcf041d] committed with status (MVCC_READ_CONFLICT) at localhost:7051
+2026-10-24 17:49:26.781 CET 0003 INFO [chaincodeCmd] ClientWait -> txid [685d4c831de9aa4ff040d9685c4f577896bb768ec00f5fe4186d7cfd6dcf041d] committed with status (MVCC_READ_CONFLICT) at localhost:9051
+Error: transaction invalidated with status (MVCC_READ_CONFLICT) - proposal response: <nil>
+2026-10-24 17:49:26.778 CET 0002 INFO [chaincodeCmd] ClientWait -> txid [f4881db28b54404ba8550e88dd48ddff6d88c7ed1cf0d8f4f3fa36a80d377051] committed with status (VALID) at localhost:9051
+2026-10-24 17:49:26.779 CET 0003 INFO [chaincodeCmd] ClientWait -> txid [f4881db28b54404ba8550e88dd48ddff6d88c7ed1cf0d8f4f3fa36a80d377051] committed with status (VALID) at localhost:7051
+== a.log: 685d4c831de9aa4ff040d9685c4f577896bb768ec00f5fe4186d7cfd6dcf041d
+2026-10-24 17:49:26.836 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+block: 8, position in block: 1
+2026-10-24 17:49:26.894 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+validation code: 11
+creator: Org1MSP
+endorsed by: Org2MSP
+endorsed by: Org1MSP
+{"_lifecycle":["namespaces/fields/basic/Sequence read at 5:0"],"basic":["asset7 read at 7:0"]}
+{
+  "reads": [
+    {
+      "key": "asset7",
+      "version": "7:0"
+    }
+  ],
+  "writes": [
+    {
+      "key": "asset7",
+      "value": "{\"AppraisedValue\":950,\"Color\":\"blue\",\"ID\":\"asset7\",\"Owner\":\"CustomsAuthority\",\"Size\":20}"
+    }
+  ]
+}
+== b.log: f4881db28b54404ba8550e88dd48ddff6d88c7ed1cf0d8f4f3fa36a80d377051
+2026-10-24 17:49:26.981 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+block: 8, position in block: 0
+2026-10-24 17:49:27.061 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+validation code: 0
+creator: Org1MSP
+endorsed by: Org2MSP
+endorsed by: Org1MSP
+{"_lifecycle":["namespaces/fields/basic/Sequence read at 5:0"],"basic":["asset7 read at 7:0"]}
+{
+  "reads": [
+    {
+      "key": "asset7",
+      "version": "7:0"
+    }
+  ],
+  "writes": [
+    {
+      "key": "asset7",
+      "value": "{\"AppraisedValue\":950,\"Color\":\"blue\",\"ID\":\"asset7\",\"Owner\":\"ShippingLine\",\"Size\":20}"
+    }
+  ]
+}
+2026-10-24 17:49:27.149 CET 0001 INFO [chaincodeCmd] InitCmdFactory -> InitCmdFactory: Entry: query, true, false
+{"AppraisedValue":950,"Color":"blue","ID":"asset7","Owner":"ShippingLine","Size":20}

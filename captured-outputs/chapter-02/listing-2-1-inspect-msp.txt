@@ -1,0 +1,41 @@
+== Folders of the peer's local MSP and TLS material
+msp/cacerts/ca.org1.example.com-cert.pem
+msp/config.yaml
+msp/keystore/priv_sk
+msp/signcerts/peer0.org1.example.com-cert.pem
+msp/tlscacerts/tlsca.org1.example.com-cert.pem
+tls/ca.crt
+tls/server.crt
+tls/server.key
+== NodeOU configuration (msp/config.yaml)
+NodeOUs:
+    Enable: true
+    ClientOUIdentifier:
+        Certificate: cacerts/ca.org1.example.com-cert.pem
+        OrganizationalUnitIdentifier: client
+    PeerOUIdentifier:
+        Certificate: cacerts/ca.org1.example.com-cert.pem
+        OrganizationalUnitIdentifier: peer
+    AdminOUIdentifier:
+        Certificate: cacerts/ca.org1.example.com-cert.pem
+        OrganizationalUnitIdentifier: admin
+    OrdererOUIdentifier:
+        Certificate: cacerts/ca.org1.example.com-cert.pem
+        OrganizationalUnitIdentifier: orderer
+== The peer's signing certificate
+subject=C = US, ST = California, L = San Francisco, OU = peer, CN = peer0.org1.example.com
+issuer=C = US, ST = California, L = San Francisco, O = org1.example.com, CN = ca.org1.example.com
+notAfter=Oct 21 16:44:00 2036 GMT
+X509v3 Key Usage: critical
+    Digital Signature
+            Public Key Algorithm: id-ecPublicKey
+                ASN1 OID: prime256v1
+== The root CA it chains to
+subject=C = US, ST = California, L = San Francisco, O = org1.example.com, CN = ca.org1.example.com
+issuer=C = US, ST = California, L = San Francisco, O = org1.example.com, CN = ca.org1.example.com
+organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp/signcerts/peer0.org1.example.com-cert.pem: OK
+== The TLS server certificate: a different CA, and the names clients may use
+subject=C = US, ST = California, L = San Francisco, CN = peer0.org1.example.com
+issuer=C = US, ST = California, L = San Francisco, O = org1.example.com, CN = tlsca.org1.example.com
+X509v3 Subject Alternative Name: 
+    DNS:peer0.org1.example.com, DNS:peer0, DNS:localhost

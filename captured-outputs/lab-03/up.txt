@@ -1,0 +1,42 @@
+== generate
+generated in ~/enterprise-blockchain/lab-03-parts-integration/build:
+  compose-ca.yaml compose-net.yaml configtx.yaml .secrets/network.env
+  state database: goleveldb
+== cas
+ca.partsmaker.example.com      port 7054   root valid until Oct 21 07:32:00 2041 GMT
+tlsca.partsmaker.example.com   port 7055   root valid until Oct 21 07:32:00 2041 GMT
+ca.mro.example.com             port 8054   root valid until Oct 21 07:32:00 2041 GMT
+tlsca.mro.example.com          port 8055   root valid until Oct 21 07:32:00 2041 GMT
+ca.airline.example.com         port 9054   root valid until Oct 21 07:32:00 2041 GMT
+tlsca.airline.example.com      port 9055   root valid until Oct 21 07:32:00 2041 GMT
+== identities
+PartsMakerMSP: admin ca-admin orderer0 parts peer0 tlsca-admin user1 
+MROMSP: admin ca-admin orderer0 parts peer0 tlsca-admin user1 
+AirlineMSP: admin ca-admin orderer0 parts peer0 tlsca-admin user1 
+PartsMakerMSP: every identity has the expected role and chain
+MROMSP: every identity has the expected role and chain
+AirlineMSP: every identity has the expected role and chain
+== nodes
+orderer0.partsmaker.example.com    OK
+peer0.partsmaker.example.com       OK
+orderer0.mro.example.com           OK
+peer0.mro.example.com              OK
+orderer0.airline.example.com       OK
+peer0.airline.example.com          OK
+== channel
+orderer type: etcdraft
+orderer0.partsmaker.example.com joins partschannel: Status: 201
+orderer0.mro.example.com joins partschannel: Status: 201
+orderer0.airline.example.com joins partschannel: Status: 201
+peer0.partsmaker.example.com joins partschannel: "height":1
+peer0.mro.example.com joins partschannel: "height":1
+peer0.airline.example.com joins partschannel: "height":1
+== deploy
+PartsMakerMSP    committed with status (VALID)
+MROMSP           committed with status (VALID)
+AirlineMSP       committed with status (VALID)
+commit: committed with status (VALID) at localhost:9051
+commit: committed with status (VALID) at localhost:8051
+commit: committed with status (VALID) at localhost:7051
+committed: version 1.0, sequence 1
+approved by: AirlineMSP MROMSP PartsMakerMSP

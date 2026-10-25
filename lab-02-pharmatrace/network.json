@@ -1,0 +1,17 @@
+{
+  "project": "pharmanet",
+  "channel": "pharmachannel",
+  "statedb": "CouchDB",
+  "chaincode": {
+    "name": "pharmatrace", "path": "pharmatrace-chaincode",
+    "version": "1.0", "sequence": 1,
+    "policy": "AND('ManufacturerMSP.peer', 'RegulatorMSP.peer')",
+    "collections": "collections.json"
+  },
+  "orgs": [
+    {"name": "manufacturer", "msp": "ManufacturerMSP", "base": 7000, "orderer": true},
+    {"name": "distributor", "msp": "DistributorMSP", "base": 8000, "orderer": true},
+    {"name": "pharmacy", "msp": "PharmacyMSP", "base": 9000},
+    {"name": "regulator", "msp": "RegulatorMSP", "base": 10000, "orderer": true}
+  ]
+}

@@ -1,0 +1,9 @@
+peer0.customs.example.com          OK
+== CustomsMSP's definition, without orderer endpoints, with its anchor peer
+CustomsMSP policies: Admins Endorsement Readers Writers
+== 2 application organizations: 2 signatures needed
+ExportBankMSP signs
+ImportBankMSP signs and submits: Successfully submitted channel update
+== CustomsMSP joins its peer and approves the chaincode definition
+Successfully submitted proposal to join channel
+CustomsMSP       committed with status (VALID)

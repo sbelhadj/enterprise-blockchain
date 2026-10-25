@@ -1,0 +1,19 @@
+{
+  "name": "pharmatrace-recall-alerts",
+  "version": "1.0.0",
+  "description": "Raises an alert for every PharmaTrace recall event, Book 4, Lab 2",
+  "private": true,
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/recall-alerts.js"
+  },
+  "license": "Apache-2.0",
+  "dependencies": {
+    "@grpc/grpc-js": "1.14.6",
+    "@hyperledger/fabric-gateway": "1.13.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.19.1",
+    "typescript": "5.9.3"
+  }
+}

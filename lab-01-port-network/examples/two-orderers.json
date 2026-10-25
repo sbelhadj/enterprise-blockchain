@@ -1,0 +1,11 @@
+{
+  "project": "portnet",
+  "channel": "portchannel",
+  "statedb": "CouchDB",
+  "chaincode": {"name": "shipment", "path": "../shipment-chaincode", "version": "1.0"},
+  "orgs": [
+    {"name": "shippingline", "msp": "ShippingLineMSP", "base": 7000, "orderer": true},
+    {"name": "portterminal", "msp": "PortTerminalMSP", "base": 7500, "orderer": true},
+    {"name": "customs", "msp": "CustomsMSP", "base": 9000}
+  ]
+}

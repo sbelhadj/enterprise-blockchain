@@ -1,0 +1,10 @@
+PASS  organization names are lowercase letters and unique
+PASS  MSP IDs are unique
+FAIL  port blocks are 1000 apart and inside 1024 to 65000
+FAIL  an odd number of founding orderers, at least three
+PASS  channel name is valid: lowercase, starts with a letter
+PASS  at least two founding organizations to endorse
+PASS  organizations that join later run no orderer
+PASS  state database is CouchDB or goleveldb
+PASS  chaincode folder has package.json and a Dockerfile
+Raft: 2 orderers tolerate 0 failed; 2 check(s) failed

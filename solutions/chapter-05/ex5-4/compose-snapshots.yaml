@@ -1,0 +1,8 @@
+# Appendix A, Exercise 5.4: ImportBank's peer writes snapshots to the shared
+# folder too, under its own name. Use with the Chapter 5 Compose files.
+services:
+  peer0-importbank:
+    environment:
+      CORE_LEDGER_SNAPSHOTS_ROOTDIR: /var/hyperledger/snapshots/importbank
+    volumes:
+      - ../snapshots:/var/hyperledger/snapshots

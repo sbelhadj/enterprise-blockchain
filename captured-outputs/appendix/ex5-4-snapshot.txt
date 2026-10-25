@@ -1,0 +1,18 @@
+== 1. ImportBank's peer gets a snapshot folder (configuration change)
+== 2. Both banks request a snapshot of the same block
+  exportbank: Snapshot request submitted successfully
+  importbank: Snapshot request submitted successfully
+  block 8: committed with status (VALID)
+  exportbank: {"last_block_number":8,"last_block_hash":"543829683d09201b"}
+  exportbank: sha256 of the metadata file 22cdd1fddb026d52
+  importbank: {"last_block_number":8,"last_block_hash":"543829683d09201b"}
+  importbank: sha256 of the metadata file 22cdd1fddb026d52
+  the two metadata files are identical, byte for byte
+== 3. peer1.exportbank loses its volume
+  before: peer1 height 10, LC-2026-102 ACCEPTED
+  after the loss: peer1 height none, LC-2026-102 unreadable
+== 4. It joins from ImportBank's snapshot and gets its package back
+  Successfully submitted proposal to join channel
+  Chaincode code package identifier: lc_1.1:4d5af860e6724
+  after recovery: peer1 height 10, LC-2026-102 ACCEPTED
+  peer0 height 10, for comparison
